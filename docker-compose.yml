@@ -1,0 +1,21 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      NEXT_PUBLIC_SITE_URL: https://numapet.store
+      NEXT_PUBLIC_API_URL: https://api.numapet.store
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgres://numapetstore:numapetstore@numapetstore_database:5432/numapetstore?sslmode=disable
+      CORS_ORIGINS: https://numapet.store,http://localhost:3000
+    ports:
+      - "8000:8000"
