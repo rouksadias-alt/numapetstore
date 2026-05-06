@@ -6,12 +6,9 @@ EDITIONS="${MAXMIND_EDITION_IDS:-GeoLite2-City}"
 
 if [ -n "$MAXMIND_ACCOUNT_ID" ] && [ -n "$MAXMIND_LICENSE_KEY" ]; then
   mkdir -p "$GEO_DIR"
-  cat > /etc/GeoIP.conf <<EOF
-AccountID $MAXMIND_ACCOUNT_ID
-LicenseKey $MAXMIND_LICENSE_KEY
-EditionIDs $EDITIONS
-DatabaseDirectory $GEO_DIR
-EOF
+  printf 'AccountID %s\nLicenseKey %s\nEditionIDs %s\nDatabaseDirectory %s\n' \
+    "$MAXMIND_ACCOUNT_ID" "$MAXMIND_LICENSE_KEY" "$EDITIONS" "$GEO_DIR" \
+    > /etc/GeoIP.conf
   echo "[entrypoint] Updating MaxMind DB(s): $EDITIONS"
   geoipupdate -v || echo "[entrypoint] WARN: geoipupdate failed; continuing without fresh DB"
 else
