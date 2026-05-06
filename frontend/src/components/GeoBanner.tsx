@@ -1,9 +1,35 @@
-import { fetchGeo } from "@/lib/geo";
+"use client";
 
-export async function GeoBanner() {
-  const geo = await fetchGeo();
+import { useEffect, useState } from "react";
 
-  if (!geo.country || geo.is_allowed) return null;
+type Geo = {
+  country: string | null;
+  country_name: string | null;
+  is_allowed: boolean;
+};
+
+export function GeoBanner() {
+  const [geo, setGeo] = useState<Geo | null>(null);
+
+  useEffect(() => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!apiUrl) return;
+    const ctrl = new AbortController();
+    fetch(`${apiUrl}/api/geo`, { signal: ctrl.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!data) return;
+        setGeo({
+          country: data.country ?? null,
+          country_name: data.country_name ?? null,
+          is_allowed: Boolean(data.is_allowed),
+        });
+      })
+      .catch(() => null);
+    return () => ctrl.abort();
+  }, []);
+
+  if (!geo || !geo.country || geo.is_allowed) return null;
 
   return (
     <div
