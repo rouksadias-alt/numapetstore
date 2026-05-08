@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,6 +23,7 @@ const checkoutSchema = z.object({
 type CheckoutForm = z.infer<typeof checkoutSchema>;
 
 export function CartDrawer() {
+  const router = useRouter();
   const {
     items,
     isCartOpen,
@@ -29,7 +31,6 @@ export function CartDrawer() {
     removeItem,
     closeCart,
     openCheckout,
-    openUpsell,
     closeCheckout,
     clearCart,
     addOffer,
@@ -85,7 +86,9 @@ export function CartDrawer() {
       }),
     }).catch(() => null);
 
-    openUpsell();
+    clearCart();
+    closeCart();
+    router.push("/thank-you");
   }
 
   if (!isCartOpen) return null;
@@ -289,29 +292,6 @@ export function CartDrawer() {
         </div>
       ) : null}
 
-      {checkoutState === "upsell" ? (
-        <div className="fixed inset-0 z-[60] grid place-items-center bg-slate-950/60 p-4">
-          <div className="w-full max-w-lg rounded-3xl bg-white p-6 text-slate-950">
-            <p className="font-bold text-amber-700">Oferta unica antes de cerrar</p>
-            <h2 className="mt-2 text-3xl font-black">Agrega AguaViva Flow por solo $29</h2>
-            <p className="mt-3 text-slate-600">
-              Esta oferta aparece solo ahora para completar la rutina de hidratacion.
-            </p>
-            <button
-              onClick={() => {
-                addOffer("aguaviva-flow", "one");
-                clearCart();
-              }}
-              className="mt-5 w-full rounded-full bg-amber-700 px-6 py-4 font-black text-white"
-            >
-              Agregar a mi pedido
-            </button>
-            <button onClick={clearCart} className="mt-3 w-full text-sm font-bold text-slate-500">
-              No gracias, continuar
-            </button>
-          </div>
-        </div>
-      ) : null}
     </>
   );
 }
