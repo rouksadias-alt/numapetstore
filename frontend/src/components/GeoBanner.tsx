@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 type Geo = {
   country: string | null;
@@ -9,9 +10,11 @@ type Geo = {
 };
 
 export function GeoBanner() {
+  const pathname = usePathname();
   const [geo, setGeo] = useState<Geo | null>(null);
 
   useEffect(() => {
+    if (pathname?.startsWith("/admin")) return;
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     if (!apiUrl) return;
     const ctrl = new AbortController();
@@ -27,8 +30,9 @@ export function GeoBanner() {
       })
       .catch(() => null);
     return () => ctrl.abort();
-  }, []);
+  }, [pathname]);
 
+  if (pathname?.startsWith("/admin")) return null;
   if (!geo || !geo.country || geo.is_allowed) return null;
 
   return (
