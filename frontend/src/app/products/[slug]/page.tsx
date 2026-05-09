@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
-import { OfferSelector } from "@/components/CartDrawer";
+import { VariantSelector } from "@/components/CartDrawer";
 import {
-  BundleOffers,
+  SizeGuide,
   EducationSections,
   FAQSection,
   ReviewsSection,
@@ -51,7 +51,7 @@ export default async function ProductPage({
             <p className="mt-5 text-xl leading-8 text-slate-700 font-medium">{product.heroSubheadline}</p>
             
             <div className="mt-8 bg-white p-6 rounded-3xl border border-[#ead3dd] shadow-sm">
-              <OfferSelector productSlug={product.slug} />
+              <VariantSelector productSlug={product.slug} />
             </div>
             
             <div className="mt-6 flex flex-col items-center justify-center gap-4">
@@ -207,15 +207,15 @@ export default async function ProductPage({
 
         <EducationSections />
 
-        <BundleOffers />
+        <SizeGuide />
 
         <section className="bg-slate-950 px-5 py-20 text-white">
           <div className="mx-auto max-w-4xl text-center">
             <p className="font-black text-teal-300 uppercase tracking-wider text-sm">Oferta exclusiva de lanzamiento</p>
-            <h2 className="mt-3 text-5xl font-black leading-tight">Elige tu pack y reserva hoy. <br/><span className="text-teal-400">Paga al recibir.</span></h2>
+            <h2 className="mt-3 text-5xl font-black leading-tight">Elige tu talla y reserva hoy. <br/><span className="text-teal-400">Paga al recibir.</span></h2>
             <p className="mt-6 text-xl text-slate-300">Sin riesgos. Sin tarjetas de crédito. Solo confirmas por WhatsApp y pagas en la puerta de tu casa.</p>
             <div className="mt-10 bg-white/5 p-8 rounded-[2rem] border border-white/10 backdrop-blur-sm">
-              <OfferSelector productSlug={product.slug} />
+              <VariantSelector productSlug={product.slug} />
             </div>
           </div>
         </section>

@@ -1,4 +1,4 @@
-import { offers } from "@/config/products";
+import { variants } from "@/config/products";
 
 export function WarrantySection() {
   return (
@@ -33,45 +33,45 @@ export function WarrantySection() {
   );
 }
 
-export function BundleOffers() {
+export function SizeGuide() {
   return (
     <section className="bg-[#f7f2e8] px-5 py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 max-w-3xl text-center mx-auto">
-          <p className="font-black text-[#b4155a] uppercase tracking-wider text-sm">Ofertas Especiales</p>
+          <p className="font-black text-[#b4155a] uppercase tracking-wider text-sm">Guía de Tallas</p>
           <h2 className="mt-2 text-4xl font-black tracking-tight text-[#2a1620] leading-tight">
-            Lleva más tranquilidad a cada rincón de tu casa.
+            Encuentra la talla perfecta para tu mascota.
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            La mayoría de nuestras clientas eligen el pack de 2 o 3 para tener siempre uno limpio mientras el otro se lava, o para diferentes áreas de la casa.
+            Cada tamaño está diseñado para el peso y la raza de tu mascota, asegurando el máximo confort y ajuste.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {offers.map((offer) => (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {variants.map((variant) => (
             <div
-              key={offer.id}
+              key={variant.id}
               className={`relative rounded-[2rem] border p-8 transition-transform hover:-translate-y-1 ${
-                offer.id === "two"
+                variant.id === "m"
                   ? "border-2 border-[#b4155a] bg-white ring-4 ring-[#fdebf3] shadow-xl"
-                  : "border-[#ead3dd] bg-white shadow-sm mt-4 md:mt-0"
+                  : "border-[#ead3dd] bg-white shadow-sm"
               }`}
             >
-              {offer.id === "two" && (
+              {variant.id === "m" && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#b4155a] text-white px-4 py-1 rounded-full text-sm font-bold shadow-md whitespace-nowrap">
-                  ⭐ La opción más popular
+                  ⭐ Más popular
                 </div>
               )}
-              {offer.badge ? (
+              {variant.badge ? (
                 <p className="mb-4 inline-flex rounded-full bg-[#fff7fb] px-3 py-1 text-sm font-black text-[#b4155a] border border-[#f2c6d8]">
-                  {offer.badge}
+                  {variant.badge}
                 </p>
               ) : <div className="h-9 mb-4"></div>}
-              <p className="font-bold text-[#7b5867] uppercase text-xs tracking-wider">{offer.anchor}</p>
-              <h3 className="mt-1 text-3xl font-black text-[#2a1620]">{offer.label}</h3>
+              <p className="font-bold text-[#7b5867] uppercase text-xs tracking-wider">{variant.anchor}</p>
+              <h3 className="mt-1 text-3xl font-black text-[#2a1620]">{variant.label}</h3>
+              <p className="mt-2 text-sm font-medium text-slate-600">{variant.size}</p>
               <div className="mt-6 flex items-baseline gap-1">
-                <span className="text-5xl font-black text-[#b4155a]">${offer.price}</span>
-                <span className="text-slate-500 font-medium">total</span>
+                <span className="text-5xl font-black text-[#b4155a]">${variant.price}</span>
               </div>
               <div className="mt-6 pt-6 border-t border-slate-100">
                 <p className="text-sm text-slate-600 font-medium flex items-start gap-2">
@@ -162,9 +162,9 @@ export function FAQSection() {
         "Tienes nuestra Garantía de 30 Días. Si por alguna razón no se adapta o no cumple tus expectativas, te devolvemos tu dinero sin hacer preguntas difíciles.",
     },
     {
-      question: "¿Cómo elijo la mejor oferta para mí?",
+      question: "¿Cómo elijo la talla correcta para mi mascota?",
       answer:
-        "Si quieres probar, 1 pieza está bien. Pero el 80% de nuestras clientas eligen el pack de 2 piezas para tener un repuesto mientras lavan el otro, aprovechando el descuento mayor.",
+        "Usa el peso de tu mascota como guía: S hasta 7 kg, M de 7 a 15 kg, L de 15 a 30 kg, y XL para más de 30 kg. Si tu mascota está en el límite, recomendamos subir una talla para mayor comodidad.",
     },
     {
       question: "¿Es fácil de lavar y mantener?",

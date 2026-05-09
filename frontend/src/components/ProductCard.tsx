@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { AddOfferButton } from "@/components/CartDrawer";
+import { AddVariantButton } from "@/components/CartDrawer";
 import type { Product } from "@/config/products";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -25,10 +25,10 @@ export function ProductCard({ product }: { product: Product }) {
         <h3 className="mt-2 text-2xl font-black">{product.cardHeading}</h3>
         <p className="mt-3 min-h-16 text-[#6c4a58]">{product.cardSubheading}</p>
         <div className="mt-5 rounded-2xl bg-[#fff7fb] p-4 text-sm font-bold text-[#7b2149]">
-          Oferta lanzamiento: 1 por $45 · 2 por $65 · 3 por $79
+          Tallas disponibles: S $35 · M $45 · L $55 · XL $65
         </div>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-          <AddOfferButton productSlug={product.slug} />
+          <AddVariantButton productSlug={product.slug} />
           <Link
             href={`/products/${product.slug}`}
             className="rounded-full border border-slate-300 px-6 py-3 text-center font-black"

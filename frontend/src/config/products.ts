@@ -1,9 +1,9 @@
 export type ProductSlug = "pelocero-casa-kit" | "aguaviva-flow" | "juegasolo-motion-kit";
 
-export type Offer = {
-  id: "one" | "two" | "three";
+export type Variant = {
+  id: "s" | "m" | "l" | "xl";
   label: string;
-  quantity: number;
+  size: string;
   price: number;
   anchor: string;
   badge?: string;
@@ -37,23 +37,35 @@ export type Product = {
   image: string;
 };
 
-export const offers: Offer[] = [
-  { id: "one", label: "1 pieza", quantity: 1, price: 45, anchor: "Para probar" },
+export const variants: Variant[] = [
   {
-    id: "two",
-    label: "2 piezas",
-    quantity: 2,
-    price: 65,
-    anchor: "Mas elegido",
-    badge: "Ahorra $25",
+    id: "s",
+    label: "Talla S",
+    size: "Pequeño (hasta 7 kg)",
+    price: 35,
+    anchor: "Razas pequeñas",
   },
   {
-    id: "three",
-    label: "3 piezas",
-    quantity: 3,
-    price: 79,
-    anchor: "Mejor valor familiar",
-    badge: "Ahorra $56",
+    id: "m",
+    label: "Talla M",
+    size: "Mediano (7–15 kg)",
+    price: 45,
+    anchor: "Mas elegido",
+    badge: "Ideal para la mayoria",
+  },
+  {
+    id: "l",
+    label: "Talla L",
+    size: "Grande (15–30 kg)",
+    price: 55,
+    anchor: "Razas grandes",
+  },
+  {
+    id: "xl",
+    label: "Talla XL",
+    size: "Extra Grande (+30 kg)",
+    price: 65,
+    anchor: "Razas gigantes",
   },
 ];
 

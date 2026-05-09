@@ -6,7 +6,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { offers, products, type Offer, type ProductSlug } from "@/config/products";
+import { variants, products, type Variant, type ProductSlug } from "@/config/products";
 import { createEventId, normalizePanamaPhone } from "@/lib/phone";
 import { getCartLines, useCartStore } from "@/stores/cart";
 
@@ -33,7 +33,7 @@ export function CartDrawer() {
     openCheckout,
     closeCheckout,
     clearCart,
-    addOffer,
+    addVariant,
   } = useCartStore();
 
   const lines = useMemo(() => getCartLines(items), [items]);
@@ -79,9 +79,9 @@ export function CartDrawer() {
         items: lines.map((line) => ({
           product_slug: line.product.slug,
           product_name: line.product.name,
-          offer_label: line.offer.label,
-          quantity: line.offer.quantity,
-          price: line.offer.price,
+          offer_label: `${line.variant.label} — ${line.variant.size}`,
+          quantity: 1,
+          price: line.variant.price,
         })),
         session_id:
           typeof window !== "undefined"
@@ -119,12 +119,12 @@ export function CartDrawer() {
           ) : (
             <div className="space-y-4">
               {lines.map((line) => (
-                <div key={line.index} className="rounded-2xl border border-slate-200 p-4">
+                  <div key={line.index} className="rounded-2xl border border-slate-200 p-4">
                   <div className="flex justify-between gap-4">
                     <div>
                       <h3 className="font-black">{line.product.name}</h3>
                       <p className="text-sm text-slate-500">
-                        {line.offer.label} · {line.offer.anchor}
+                        {line.variant.label} · {line.variant.size}
                       </p>
                     </div>
                     <button onClick={() => removeItem(line.index)} className="text-sm font-bold text-slate-500">
@@ -143,10 +143,10 @@ export function CartDrawer() {
               <h3 className="mt-1 text-xl font-black">{crossSell.name}</h3>
               <p className="mt-2 text-sm text-slate-600">{crossSell.cardSubheading}</p>
               <button
-                onClick={() => addOffer(crossSell.slug, "two")}
+                onClick={() => addVariant(crossSell.slug, "m")}
                 className="mt-4 rounded-full bg-teal-700 px-5 py-3 text-sm font-black text-white"
               >
-                Agregar oferta 2 piezas - $65
+                Agregar Talla M - $45
               </button>
             </div>
           ) : null}
@@ -313,95 +313,91 @@ export function CartButton() {
   );
 }
 
-export function AddOfferButton({ productSlug, offerId = "two" }: { productSlug: ProductSlug; offerId?: Offer["id"] }) {
-  const addOffer = useCartStore((state) => state.addOffer);
-  const offer = offers.find((o) => o.id === offerId);
+export function AddVariantButton({ productSlug, variantId = "m" }: { productSlug: ProductSlug; variantId?: Variant["id"] }) {
+  const addVariant = useCartStore((state) => state.addVariant);
+  const variant = variants.find((v) => v.id === variantId);
   return (
     <button
-      onClick={() => addOffer(productSlug, offerId)}
+      onClick={() => addVariant(productSlug, variantId)}
       className="w-full rounded-full bg-[#b4155a] px-6 py-3.5 text-center font-black text-white shadow-md transition active:scale-[0.99] hover:bg-[#95104a]"
     >
-      {offer ? `Lo quiero — ${offer.label} · $${offer.price}` : "Agregar al carrito"}
+      {variant ? `Lo quiero — ${variant.label} · $${variant.price}` : "Agregar al carrito"}
     </button>
   );
 }
 
-export function OfferSelector({ productSlug }: { productSlug: ProductSlug }) {
-  const addOffer = useCartStore((state) => state.addOffer);
+export function VariantSelector({ productSlug }: { productSlug: ProductSlug }) {
+  const addVariant = useCartStore((state) => state.addVariant);
   return (
-    <div className="flex flex-col gap-2.5 sm:grid sm:grid-cols-3 sm:gap-3">
-      {offers.map((offer) => {
-        const isPopular = offer.id === "two";
-        return (
-          <button
-            key={offer.id}
-            onClick={() => addOffer(productSlug, offer.id)}
-            className={`group relative flex w-full items-center justify-between gap-3 rounded-2xl border p-4 text-left transition active:scale-[0.99] hover:border-[#b4155a] sm:flex-col sm:items-start sm:justify-start sm:gap-0 sm:rounded-3xl sm:p-5 sm:min-h-36 ${
-              isPopular
-                ? "border-2 border-[#b4155a] bg-[#fff5f9] shadow-sm ring-2 ring-[#f2c6d8] sm:ring-4"
-                : "border-[#ead3dd] bg-white"
-            }`}
-          >
-            {isPopular ? (
-              <span className="absolute -top-2.5 left-4 rounded-full bg-[#b4155a] px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-white shadow-sm sm:left-1/2 sm:-translate-x-1/2">
-                ⭐ Más elegido
-              </span>
-            ) : null}
-
-            <div className="flex-1 sm:w-full">
-              <p className="hidden text-xs font-bold uppercase tracking-wider text-[#7b5867] sm:block">
-                {offer.anchor}
-              </p>
-              <p className="text-base font-black leading-tight text-[#2a1620] sm:mt-2 sm:text-xl">
-                {offer.label}
-              </p>
-              <p className="text-xs text-[#7b5867] sm:hidden">
-                {offer.anchor}
-              </p>
-            </div>
-
-            <div className="flex flex-col items-end gap-0.5 sm:mt-4 sm:w-full sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-2xl font-black tracking-tight text-[#b4155a] sm:text-4xl">
-                ${offer.price}
-              </p>
-              {offer.badge ? (
-                <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-black text-emerald-700 sm:bg-transparent sm:px-0 sm:text-sm sm:text-[#0f766e]">
-                  {offer.badge}
+    <div>
+      <p className="mb-3 text-xs font-black uppercase tracking-wider text-[#7b5867]">
+        Elige tu talla
+      </p>
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
+        {variants.map((variant) => {
+          const isPopular = variant.id === "m";
+          return (
+            <button
+              key={variant.id}
+              onClick={() => addVariant(productSlug, variant.id)}
+              className={`group relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition active:scale-[0.99] hover:border-[#b4155a] sm:rounded-3xl sm:p-5 ${
+                isPopular
+                  ? "border-2 border-[#b4155a] bg-[#fff5f9] shadow-sm ring-2 ring-[#f2c6d8]"
+                  : "border-[#ead3dd] bg-white"
+              }`}
+            >
+              {isPopular ? (
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[#b4155a] px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-white shadow-sm whitespace-nowrap">
+                  ⭐ Popular
                 </span>
               ) : null}
-            </div>
-          </button>
-        );
-      })}
+
+              <p className="text-lg font-black text-[#2a1620]">{variant.label}</p>
+              <p className="text-xs text-[#7b5867] leading-tight">{variant.size}</p>
+
+              <div className="mt-2 flex w-full items-end justify-between gap-1">
+                <p className="text-2xl font-black tracking-tight text-[#b4155a]">
+                  ${variant.price}
+                </p>
+                {variant.badge ? (
+                  <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-black text-emerald-700">
+                    {variant.badge}
+                  </span>
+                ) : null}
+              </div>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
 export function MobileBuyBar({
   productSlug = "pelocero-casa-kit",
-  offerId = "two",
+  variantId = "m",
 }: {
   productSlug?: ProductSlug;
-  offerId?: Offer["id"];
+  variantId?: Variant["id"];
 }) {
-  const addOffer = useCartStore((state) => state.addOffer);
+  const addVariant = useCartStore((state) => state.addVariant);
   const openCart = useCartStore((state) => state.openCart);
-  const offer = offers.find((o) => o.id === offerId);
-  if (!offer) return null;
+  const variant = variants.find((v) => v.id === variantId);
+  if (!variant) return null;
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#ead3dd] bg-white/95 px-4 py-3 shadow-[0_-8px_24px_-12px_rgba(180,21,90,0.25)] backdrop-blur lg:hidden">
       <button
         onClick={() => {
-          addOffer(productSlug, offerId);
+          addVariant(productSlug, variantId);
           openCart();
         }}
         className="flex w-full items-center justify-between gap-3 rounded-full bg-[#b4155a] px-5 py-3.5 text-white shadow-md transition active:scale-[0.99]"
       >
         <div className="flex flex-col items-start leading-tight">
           <span className="text-[10px] font-bold uppercase tracking-wider opacity-80">
-            ⭐ Más elegido · {offer.label}
+            ⭐ Más elegido · {variant.label} — {variant.size}
           </span>
-          <span className="text-base font-black">Comprar ahora — ${offer.price}</span>
+          <span className="text-base font-black">Comprar ahora — ${variant.price}</span>
         </div>
         <span className="rounded-full bg-white/15 px-3 py-1.5 text-sm font-black">
           →

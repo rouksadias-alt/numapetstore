@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 import {
-  BundleOffers,
+  SizeGuide,
   EducationSections,
   FAQSection,
   ReviewsSection,
 } from "@/components/CROSections";
-import { AddOfferButton, MobileBuyBar, OfferSelector } from "@/components/CartDrawer";
+import { AddVariantButton, MobileBuyBar, VariantSelector } from "@/components/CartDrawer";
 import { AppShell } from "@/components/Layout";
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/config/products";
@@ -46,7 +46,7 @@ export default function Home() {
                     city: "Ciudad de Panamá",
                   },
                   {
-                    quote: "Compré el pack de 2. Alivio total con los pelos en muebles.",
+                    quote: "Compré la talla L. Alivio total con los pelos en muebles.",
                     name: "Carmen R.",
                     city: "San Francisco",
                   },
@@ -72,7 +72,7 @@ export default function Home() {
               </div>
 
               <div className="mx-auto mt-5 max-w-xl lg:mx-0">
-                <OfferSelector productSlug="pelocero-casa-kit" />
+                <VariantSelector productSlug="pelocero-casa-kit" />
                 <p className="mt-3 text-center text-xs text-[#7b5867] lg:text-left">
                   ✓ No te cobramos ahora · Confirmamos por teléfono primero
                 </p>
@@ -102,7 +102,7 @@ export default function Home() {
                 </p>
                 <div className="mt-3 text-sm font-black text-amber-500">★★★★★</div>
                 <div className="mt-5">
-                  <AddOfferButton productSlug="pelocero-casa-kit" />
+                  <AddVariantButton productSlug="pelocero-casa-kit" />
                 </div>
               </div>
             </div>
@@ -114,7 +114,7 @@ export default function Home() {
             {[
               ["Sin pago por adelantado", "Confirmas primero por telefono."],
               ["Rutina completa", "Limpieza, agua y juego en un sistema."],
-              ["Bundle inteligente", "2 y 3 piezas con mejor valor."],
+              ["Tallas S M L XL", "El tamaño perfecto para tu mascota."],
               ["Soporte local", "Comunicacion clara por WhatsApp."],
             ].map(([title, text]) => (
               <div key={title} className="rounded-2xl bg-white/70 p-4">
@@ -141,7 +141,7 @@ export default function Home() {
 
         <EducationSections />
 
-        <BundleOffers />
+        <SizeGuide />
 
         <section className="bg-white px-5 py-16">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">

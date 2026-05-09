@@ -2,11 +2,11 @@
 
 import { create } from "zustand";
 
-import { offers, products, type Offer, type ProductSlug } from "@/config/products";
+import { variants, products, type Variant, type ProductSlug } from "@/config/products";
 
 export type CartItem = {
   productSlug: ProductSlug;
-  offerId: Offer["id"];
+  variantId: Variant["id"];
 };
 
 type CheckoutState = "closed" | "checkout" | "upsell" | "thank-you";
@@ -15,7 +15,7 @@ type CartStore = {
   items: CartItem[];
   isCartOpen: boolean;
   checkoutState: CheckoutState;
-  addOffer: (productSlug: ProductSlug, offerId: Offer["id"]) => void;
+  addVariant: (productSlug: ProductSlug, variantId: Variant["id"]) => void;
   removeItem: (index: number) => void;
   openCart: () => void;
   closeCart: () => void;
@@ -29,9 +29,9 @@ export const useCartStore = create<CartStore>((set) => ({
   items: [],
   isCartOpen: false,
   checkoutState: "closed",
-  addOffer: (productSlug, offerId) =>
+  addVariant: (productSlug, variantId) =>
     set((state) => ({
-      items: [...state.items, { productSlug, offerId }],
+      items: [...state.items, { productSlug, variantId }],
       isCartOpen: true,
     })),
   removeItem: (index) =>
@@ -49,17 +49,17 @@ export const useCartStore = create<CartStore>((set) => ({
 export function getCartLines(items: CartItem[]) {
   return items.map((item, index) => {
     const product = products.find((entry) => entry.slug === item.productSlug);
-    const offer = offers.find((entry) => entry.id === item.offerId);
+    const variant = variants.find((entry) => entry.id === item.variantId);
 
-    if (!product || !offer) {
+    if (!product || !variant) {
       throw new Error("Invalid cart item");
     }
 
     return {
       index,
       product,
-      offer,
-      total: offer.price,
+      variant,
+      total: variant.price,
     };
   });
 }
