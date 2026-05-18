@@ -10,11 +10,18 @@ export const metadata = {
 };
 
 const GALLERY = [
-  { src: "/products/neckrelax-hero.jpg", alt: "NeckRelax Pro azul vista principal" },
-  { src: "/products/neckrelax-lifestyle.jpg", alt: "Mujer relajada usando NeckRelax Pro" },
-  { src: "/products/neckrelax-detail.jpg", alt: "Detalle electrodos y display LED" },
-  { src: "/products/neckrelax-side.jpg", alt: "Vista lateral ergonómica" },
-  { src: "/products/neckrelax-colors.jpg", alt: "Colores disponibles: blanco, negro, azul" },
+  { src: "/products/neckrelax-hero.jpg", alt: "NeckRelax Pro azul — vista principal del producto" },
+  { src: "/products/neckrelax-colors.jpg", alt: "Tres colores: blanco, negro y azul" },
+  { src: "/products/neckrelax-lifestyle.jpg", alt: "NeckRelax Pro en el dormitorio" },
+  {
+    src: "/products/neckrelax-action.jpg",
+    alt: "Mujer relajada usando NeckRelax Pro con alivio cervical",
+  },
+  {
+    src: "/products/neckrelax-detail.jpg",
+    alt: "Masaje por vibración EMS — electrodos y panel de control",
+  },
+  { src: "/products/neckrelax-side.jpg", alt: "Vista superior del masajeador negro" },
 ];
 
 export default function NeckRelaxLanding() {
@@ -172,8 +179,8 @@ export default function NeckRelaxLanding() {
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center">
           <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-slate-200 bg-sky-50 shadow-sm">
             <Image
-              src="/products/neckrelax-lifestyle.jpg"
-              alt="Mujer usando NeckRelax Pro en cama"
+              src="/products/neckrelax-action.jpg"
+              alt="Mujer usando NeckRelax Pro — alivio cervical EMS"
               fill
               className="object-cover"
             />
