@@ -9,56 +9,46 @@ export const metadata = {
     "Masajeador cervical EMS con calor infrarrojo. 6 modos · 9 intensidades. Pago contra entrega en Panamá. Garantía 30 días.",
 };
 
-const GALLERY = [
-  { src: "/products/neckrelax-hero.jpg", alt: "NeckRelax Pro azul — vista principal" },
-  { src: "/products/neckrelax-colors.jpg", alt: "Tres colores: blanco, negro y azul" },
+const HERO_IMAGE = {
+  src: "/products/neckrelax-hero.jpg",
+  alt: "NeckRelax Pro azul — vista principal",
+};
+
+const THUMBNAILS = [
   { src: "/products/neckrelax-lifestyle.jpg", alt: "NeckRelax Pro en el dormitorio" },
-  {
-    src: "/products/neckrelax-action.jpg",
-    alt: "Mujer relajada usando NeckRelax Pro con alivio cervical",
-  },
-  {
-    src: "/products/neckrelax-detail.jpg",
-    alt: "Masaje por vibración EMS — electrodos y panel de control",
-  },
-  { src: "/products/neckrelax-side.jpg", alt: "Vista superior del masajeador negro" },
+  { src: "/products/neckrelax-colors.jpg", alt: "Tres colores: blanco, negro y azul" },
+  { src: "/products/neckrelax-side.jpg", alt: "Vista superior del masajeador" },
 ];
 
 const BENEFITS = [
   {
     title: "Alivio EMS en profundidad",
     text: "Impulsos suaves que relajan el trapecio y la nuca — como un masaje profesional, sin salir de casa.",
-    image: "/products/neckrelax-detail.jpg",
     icon: "⚡",
   },
   {
     title: "Calor infrarrojo 38–42°C",
     text: "Aumenta la circulación local y desbloquea la rigidez matutina en minutos.",
-    image: "/products/neckrelax-action.jpg",
     icon: "🔥",
   },
   {
     title: "6 modos × 9 intensidades",
     text: "Amasado, golpeteo, acupuntura, EMS… Tú eliges. Empieza suave, sube cuando quieras.",
-    image: "/products/neckrelax-side.jpg",
     icon: "🎛️",
   },
   {
     title: "Manos libres, 15 minutos",
     text: "Úsalo en el sofá, la cama o el escritorio. Auto-apagado — cero esfuerzo.",
-    image: "/products/neckrelax-lifestyle.jpg",
     icon: "🛋️",
   },
   {
     title: "3 colores, mismo poder",
     text: "Blanco, negro o azul — elige el que combine con tu espacio.",
-    image: "/products/neckrelax-colors.jpg",
     icon: "🎨",
   },
   {
     title: "Recargable USB-C",
     text: "~8 sesiones por carga. Llévalo a la oficina o de viaje sin cables enredados.",
-    image: "/products/neckrelax-hero.jpg",
     icon: "🔋",
   },
 ];
@@ -68,19 +58,16 @@ const HOW_TO_STEPS = [
     n: "1",
     title: "Colócalo en tu cuello",
     text: "Apoya sobre la nuca. Los electrodos tocan la piel sin presión excesiva.",
-    image: "/products/neckrelax-lifestyle.jpg",
   },
   {
     n: "2",
     title: "Elige modo + intensidad",
     text: "Empieza en nivel 1–2. Sube gradualmente hasta sentir alivio cómodo.",
-    image: "/products/neckrelax-detail.jpg",
   },
   {
     n: "3",
     title: "Relájate 15 minutos",
     text: "Netflix, lectura o antes de dormir. Se apaga solo al terminar la sesión.",
-    image: "/products/neckrelax-action.jpg",
   },
 ];
 
@@ -138,8 +125,8 @@ export default function NeckRelaxLanding() {
           <div className="rounded-[2rem] border border-slate-200 bg-gradient-to-br from-sky-50 to-white p-4 shadow-sm">
             <div className="relative aspect-square overflow-hidden rounded-[1.5rem] bg-white">
               <Image
-                src={GALLERY[0].src}
-                alt={GALLERY[0].alt}
+                src={HERO_IMAGE.src}
+                alt={HERO_IMAGE.alt}
                 fill
                 priority
                 className="object-cover"
@@ -147,12 +134,9 @@ export default function NeckRelaxLanding() {
               <span className="absolute left-4 top-4 rounded-full bg-sky-600 px-3 py-1 text-xs font-black uppercase tracking-wider text-white shadow">
                 Best seller wellness
               </span>
-              <span className="absolute bottom-4 right-4 rounded-full bg-amber-500 px-3 py-1 text-xs font-black text-white shadow">
-                −42% vs fisioterapia/mes
-              </span>
             </div>
-            <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-5">
-              {GALLERY.slice(1).map((g) => (
+            <div className="mt-3 grid grid-cols-3 gap-2">
+              {THUMBNAILS.map((g) => (
                 <div
                   key={g.src}
                   className="relative aspect-square overflow-hidden rounded-xl border border-slate-200 bg-white"
@@ -247,46 +231,15 @@ export default function NeckRelaxLanding() {
             Tecnología de consultorio, en tu casa, por una fracción del costo mensual.
           </p>
         </div>
-        <div className="mx-auto mt-14 grid max-w-6xl gap-10">
-          {BENEFITS.map((b, i) => (
+        <div className="mx-auto mt-10 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {BENEFITS.map((b) => (
             <div
               key={b.title}
-              className={`grid items-center gap-8 lg:grid-cols-2 ${
-                i % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
-              }`}
+              className="rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm"
             >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border border-slate-200 bg-sky-50 shadow-sm">
-                <Image src={b.image} alt={b.title} fill className="object-cover" />
-                <span className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-2xl shadow">
-                  {b.icon}
-                </span>
-              </div>
-              <div>
-                <h3 className="text-2xl font-black text-slate-900 md:text-3xl">{b.title}</h3>
-                <p className="mt-3 text-lg leading-8 text-slate-600">{b.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* GALLERY */}
-      <section className="bg-slate-900 px-5 py-16 text-white">
-        <div className="mx-auto max-w-6xl text-center">
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-sky-300">
-            Galería del producto
-          </p>
-          <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
-            Así se ve y se siente en la vida real
-          </h2>
-        </div>
-        <div className="mx-auto mt-10 grid max-w-6xl grid-cols-2 gap-3 md:grid-cols-3">
-          {GALLERY.map((g) => (
-            <div
-              key={g.src}
-              className="relative aspect-square overflow-hidden rounded-2xl border border-white/10"
-            >
-              <Image src={g.src} alt={g.alt} fill className="object-cover" />
+              <span className="text-3xl">{b.icon}</span>
+              <h3 className="mt-3 text-xl font-black text-slate-900">{b.title}</h3>
+              <p className="mt-2 text-slate-600">{b.text}</p>
             </div>
           ))}
         </div>
@@ -347,7 +300,7 @@ export default function NeckRelaxLanding() {
           <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-slate-200 bg-sky-50 shadow-sm">
             <Image
               src="/products/neckrelax-lifestyle.jpg"
-              alt="NeckRelax Pro en la cama — masaje cervical con calor"
+              alt="NeckRelax Pro en uso — alivio cervical en casa"
               fill
               className="object-cover"
             />
@@ -432,9 +385,8 @@ export default function NeckRelaxLanding() {
               key={s.n}
               className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm"
             >
-              <div className="relative aspect-[4/3] bg-sky-50">
-                <Image src={s.image} alt={s.title} fill className="object-cover" />
-                <span className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-sky-600 text-xl font-black text-white">
+              <div className="border-b border-sky-100 bg-sky-50 px-6 py-8">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-600 text-xl font-black text-white">
                   {s.n}
                 </span>
               </div>
@@ -699,3 +651,5 @@ export default function NeckRelaxLanding() {
     </div>
   );
 }
+
+
