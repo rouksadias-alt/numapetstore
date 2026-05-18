@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 
 import { VariantSelector } from "@/components/CartDrawer";
@@ -16,12 +16,21 @@ export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
 }
 
+// Slugs that have their own dedicated standalone landing page
+const STANDALONE_PRODUCTS = new Set(["neckrelax-pro"]);
+
 export default async function ProductPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  // Standalone landing pages live in /app/landing/<slug>/page.tsx
+  if (STANDALONE_PRODUCTS.has(slug)) {
+    redirect(`/landing/${slug}`);
+  }
+
   const product = getProduct(slug);
 
   if (!product) notFound();

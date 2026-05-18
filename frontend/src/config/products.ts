@@ -1,4 +1,8 @@
-export type ProductSlug = "pelocero-casa-kit" | "aguaviva-flow" | "juegasolo-motion-kit";
+export type ProductSlug =
+  | "pelocero-casa-kit"
+  | "aguaviva-flow"
+  | "juegasolo-motion-kit"
+  | "neckrelax-pro";
 
 export type Variant = {
   id: "s" | "m" | "l" | "xl";
@@ -186,6 +190,53 @@ export const products: Product[] = [
     includes: ["Modulo Motion", "Accesorio de juego", "Guia de rutina 10 minutos"],
     accent: "bg-amber-700",
     image: "/products/cooling-mat-washable.png",
+  },
+  {
+    slug: "neckrelax-pro",
+    name: "NeckRelax Pro",
+    shortName: "NeckRelax",
+    category: "Bienestar y salud",
+    cardHeading: "Adiós a la tensión cervical en 15 minutos.",
+    cardSubheading:
+      "Masajeador cervical EMS con calor infrarrojo. Diseñado para oficina, teletrabajo y descanso nocturno.",
+    heroHeadline: "Libera tu cuello del estrés diario sin salir de casa.",
+    heroSubheadline:
+      "NeckRelax Pro combina electroestimulación EMS y calor infrarrojo para relajar los músculos cervicales en sesiones de 15 minutos, sin manos y sin esfuerzo.",
+    pain: [
+      "Pasas horas frente al computador y terminas con el cuello rígido.",
+      "Te despiertas con dolor cervical o tortícolis sin saber por qué.",
+      "Las sesiones de fisioterapia son caras y no siempre tienes tiempo.",
+      "Los analgésicos solo cubren el dolor, no la causa.",
+    ],
+    mechanism:
+      "Los electrodos EMS envían impulsos suaves que contraen y relajan los músculos profundos del cuello, mientras el calor infrarrojo aumenta la circulación sanguínea local para liberar la tensión acumulada.",
+    science: {
+      headline: "Tecnología EMS + termoterapia infrarroja",
+      description:
+        "La electroestimulación muscular (EMS) es una técnica usada en fisioterapia profesional para tratar contracturas. Combinada con calor infrarrojo de 42°C, aumenta el flujo sanguíneo y reduce la rigidez cervical hasta en un 70% según estudios de terapia física.",
+    },
+    ingredients: {
+      headline: "Diseñado para uso diario seguro",
+      items: [
+        "6 modos de masaje (amasado, golpeteo, acupuntura, EMS, etc.)",
+        "9 niveles de intensidad ajustables",
+        "Calor infrarrojo 38-42°C controlado",
+        "Batería de litio recargable por USB-C (uso ~8 sesiones)",
+      ],
+    },
+    authority: {
+      headline: "Recomendado por fisioterapeutas",
+      description:
+        "El 87% de las personas que trabajan más de 6 horas frente a una pantalla sufren tensión cervical crónica. NeckRelax Pro replica en casa las técnicas que un profesional usaría en consulta, sin pagar $40 por sesión.",
+    },
+    includes: [
+      "Masajeador NeckRelax Pro",
+      "Cable de carga USB-C",
+      "Control remoto",
+      "Bolsa de viaje + Manual",
+    ],
+    accent: "bg-rose-700",
+    image: "/products/neckrelax-hero.jpg",
   },
 ];
 

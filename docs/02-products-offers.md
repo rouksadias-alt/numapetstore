@@ -2,7 +2,9 @@
 
 ## Product Line
 
-Numapetstore launches with 3 branded hero products. Use them everywhere: homepage, collection, cart cross-sells, product pages, trust sections, and post-submit upsells.
+Numapetstore launches with 3 branded pet hero products + 1 wellness winner (NeckRelax Pro). Use them everywhere: homepage, collection, cart cross-sells, product pages, trust sections, and post-submit upsells.
+
+> Full spec for NeckRelax Pro lives in `docs/products/neckrelax-pro.md`.
 
 ## 1. PeloCero Casa Kit
 
@@ -83,6 +85,47 @@ Product card heading:
 Subheading:
 
 > Movimiento automatico para mantener a tu mascota activa y curiosa.
+
+## 4. NeckRelax Pro (Wellness — Bienestar humano)
+
+Core promise:
+
+> Libera la tension cervical en 15 minutos sin salir de casa.
+
+Pain:
+
+- Cuello rigido por 8h frente a pantalla (teletrabajo / oficina).
+- Despertar con torticolis o dolor cervical sin razon aparente.
+- Sesiones de fisioterapia caras ($40+ por sesion).
+- Analgesicos solo cubren el dolor, no la causa.
+
+High-price framing:
+
+- Posicionar como herramienta de fisioterapia para casa, no "gadget".
+- Mencionar EMS + termoterapia infrarroja (lenguaje clinico).
+- Comparar con costo de sesiones de fisio.
+- Garantia 30 dias para reducir riesgo percibido.
+
+Product card heading:
+
+> Adios a la tension cervical en 15 minutos.
+
+Subheading:
+
+> Masajeador cervical EMS con calor infrarrojo. Diseñado para oficina, teletrabajo y descanso nocturno.
+
+Offer ladder NeckRelax (override del estandar):
+
+- 1 unidad: `$39` — "Para probar"
+- 2 unidades: `$65` — "Mas elegido · Regala uno"
+- 3 unidades: `$82` — "Mejor valor familia"
+
+Test A/B: `$39` vs `$45` vs `$49`. Subir el precio si CTR > 1.5% y add-to-cart > 4%.
+
+Upsell post-lead recomendado (`$19`):
+
+- Cojin lumbar inflable de viaje, o
+- Pack de 10 parches termicos cuello/espalda.
 
 ## Offer Ladder
 
