@@ -12,7 +12,7 @@ export const metadata = {
 const GALLERY = [
   { src: "/products/neckrelax-hero.jpg", alt: "NeckRelax Pro azul — vista principal" },
   { src: "/products/neckrelax-colors.jpg", alt: "Tres colores: blanco, negro y azul" },
-  { src: "/products/neckrelax-bedroom.jpg", alt: "NeckRelax Pro en el dormitorio" },
+  { src: "/products/neckrelax-lifestyle.jpg", alt: "NeckRelax Pro en el dormitorio" },
   {
     src: "/products/neckrelax-action.jpg",
     alt: "Mujer relajada usando NeckRelax Pro con alivio cervical",
@@ -46,7 +46,7 @@ const BENEFITS = [
   {
     title: "Manos libres, 15 minutos",
     text: "Úsalo en el sofá, la cama o el escritorio. Auto-apagado — cero esfuerzo.",
-    image: "/products/neckrelax-bedroom.jpg",
+    image: "/products/neckrelax-lifestyle.jpg",
     icon: "🛋️",
   },
   {
@@ -68,7 +68,7 @@ const HOW_TO_STEPS = [
     n: "1",
     title: "Colócalo en tu cuello",
     text: "Apoya sobre la nuca. Los electrodos tocan la piel sin presión excesiva.",
-    image: "/products/neckrelax-bedroom.jpg",
+    image: "/products/neckrelax-lifestyle.jpg",
   },
   {
     n: "2",
@@ -346,7 +346,7 @@ export default function NeckRelaxLanding() {
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center">
           <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-slate-200 bg-sky-50 shadow-sm">
             <Image
-              src="/products/neckrelax-bedroom.jpg"
+              src="/products/neckrelax-lifestyle.jpg"
               alt="NeckRelax Pro en la cama — masaje cervical con calor"
               fill
               className="object-cover"
