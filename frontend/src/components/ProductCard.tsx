@@ -25,7 +25,7 @@ export function ProductCard({ product }: { product: Product }) {
         <h3 className="mt-2 text-2xl font-black">{product.cardHeading}</h3>
         <p className="mt-3 min-h-16 text-[#6c4a58]">{product.cardSubheading}</p>
         <div className="mt-5 rounded-2xl bg-[#fff7fb] p-4 text-sm font-bold text-[#7b2149]">
-          Tallas disponibles: S $35 · M $45 · L $55 · XL $65
+          🔥 Oferta de lanzamiento · Pago contra entrega · Envío 24-48h en Panamá
         </div>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           <AddVariantButton productSlug={product.slug} />
