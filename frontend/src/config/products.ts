@@ -236,7 +236,7 @@ export const products: Product[] = [
       "Bolsa de viaje + Manual",
     ],
     accent: "bg-rose-700",
-    image: "/products/neckrelax-kit-hero.jpg",
+    image: "/products/neckrelax-hero.jpg",
   },
 ];
 

@@ -10,33 +10,18 @@ export const metadata = {
 };
 
 const GALLERY = [
+  { src: "/products/neckrelax-hero.jpg", alt: "NeckRelax Pro azul — vista principal" },
+  { src: "/products/neckrelax-colors.jpg", alt: "Tres colores: blanco, negro y azul" },
+  { src: "/products/neckrelax-lifestyle.jpg", alt: "NeckRelax Pro en el dormitorio" },
   {
-    src: "/products/neckrelax-kit-hero.jpg",
-    alt: "Almohada cervical con calor infrarrojo — vista principal",
+    src: "/products/neckrelax-action.jpg",
+    alt: "Mujer relajada usando NeckRelax Pro con alivio cervical",
   },
   {
-    src: "/products/neckrelax-kit-lifestyle.jpg",
-    alt: "Mujer relajada usando el masajeador cervical en casa",
+    src: "/products/neckrelax-detail.jpg",
+    alt: "Masaje por vibración EMS — electrodos y panel de control",
   },
-  {
-    src: "/products/neckrelax-kit-accessories.jpg",
-    alt: "Kit completo: antifaz, cable USB-C y adaptador incluidos",
-  },
-  {
-    src: "/products/neckrelax-kit-heat-use.jpg",
-    alt: "Calor terapéutico en cuello y hombros",
-  },
-  {
-    src: "/products/neckrelax-kit-remote.jpg",
-    alt: "Control remoto y masajeador EMS multipropósito",
-  },
-];
-
-const KIT_INCLUDES = [
-  "Almohada cervical ergonómica con calor infrarrojo",
-  "Parches EMS de hidrogel reemplazables (piel sensible)",
-  "Control remoto + 6 modos × 9 intensidades",
-  "Antifaz de descanso, cable USB-C y adaptador",
+  { src: "/products/neckrelax-side.jpg", alt: "Vista superior del masajeador negro" },
 ];
 
 export default function NeckRelaxLanding() {
@@ -79,7 +64,7 @@ export default function NeckRelaxLanding() {
                 Best seller wellness
               </span>
             </div>
-            <div className="mt-3 grid grid-cols-4 gap-2">
+            <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-5">
               {GALLERY.slice(1).map((g) => (
                 <div
                   key={g.src}
@@ -105,9 +90,9 @@ export default function NeckRelaxLanding() {
               <span className="bg-sky-100 px-2 text-sky-700">15 minutos</span> al día.
             </h1>
             <p className="mt-4 text-lg leading-7 text-slate-600">
-              Kit completo: <strong>almohada cervical con calor</strong> +{" "}
-              <strong>parches EMS de hidrogel</strong> para cuello, hombros, espalda y piernas.
-              Sin manos, sin pastillas, sin pagar $40 por fisioterapia.
+              NeckRelax Pro combina <strong>electroestimulación EMS</strong> y{" "}
+              <strong>calor infrarrojo a 42°C</strong> para relajar los músculos cervicales
+              profundos. Sin manos, sin pastillas, sin pagar $40 por fisioterapia.
             </p>
 
             <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
@@ -194,8 +179,8 @@ export default function NeckRelaxLanding() {
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center">
           <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-slate-200 bg-sky-50 shadow-sm">
             <Image
-              src="/products/neckrelax-kit-lifestyle.jpg"
-              alt="Uso del masajeador cervical con calor en casa"
+              src="/products/neckrelax-action.jpg"
+              alt="Mujer usando NeckRelax Pro — alivio cervical EMS"
               fill
               className="object-cover"
             />
@@ -226,50 +211,6 @@ export default function NeckRelaxLanding() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* KIT */}
-      <section className="border-y border-slate-100 bg-white px-5 py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm">
-              <Image
-                src="/products/neckrelax-kit-accessories.jpg"
-                alt="Contenido del kit NeckRelax Pro"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.25em] text-sky-700">
-                Todo incluido
-              </p>
-              <h2 className="mt-2 text-4xl font-black leading-tight tracking-tight">
-                Recibes el kit completo, listo para usar.
-              </h2>
-              <ul className="mt-6 grid gap-3">
-                {KIT_INCLUDES.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800"
-                  >
-                    <span className="text-sky-600">✓</span>
-                    <span className="font-medium">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="mt-10 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
-            <Image
-              src="/products/neckrelax-kit-showcase.jpg"
-              alt="NeckRelax Pro — funciones EMS, calor y zonas de aplicación"
-              width={1232}
-              height={1520}
-              className="h-auto w-full"
-            />
           </div>
         </div>
       </section>
