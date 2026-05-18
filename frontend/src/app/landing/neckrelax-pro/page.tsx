@@ -14,7 +14,7 @@ const GALLERY = [
   { src: "/products/neckrelax-colors.jpg", alt: "Tres colores: blanco, negro y azul" },
   { src: "/products/neckrelax-bedroom.jpg", alt: "NeckRelax Pro en el dormitorio" },
   {
-    src: "/products/neckrelax-bedroom.jpg",
+    src: "/products/neckrelax-action.jpg",
     alt: "Mujer relajada usando NeckRelax Pro con alivio cervical",
   },
   {
@@ -34,7 +34,7 @@ const BENEFITS = [
   {
     title: "Calor infrarrojo 38–42°C",
     text: "Aumenta la circulación local y desbloquea la rigidez matutina en minutos.",
-    image: "/products/neckrelax-bedroom.jpg",
+    image: "/products/neckrelax-action.jpg",
     icon: "🔥",
   },
   {
@@ -80,7 +80,7 @@ const HOW_TO_STEPS = [
     n: "3",
     title: "Relájate 15 minutos",
     text: "Netflix, lectura o antes de dormir. Se apaga solo al terminar la sesión.",
-    image: "/products/neckrelax-bedroom.jpg",
+    image: "/products/neckrelax-action.jpg",
   },
 ];
 
