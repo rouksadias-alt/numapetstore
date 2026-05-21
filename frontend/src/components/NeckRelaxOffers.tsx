@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { createEventId, normalizePanamaPhone } from "@/lib/phone";
+
+import { create } from "zustand";
 
 export type NeckPack = {
   id: "p1" | "p2" | "p3";
@@ -18,13 +20,27 @@ export type NeckPack = {
   badge?: string;
 };
 
+export const useNeckRelaxStore = create<{
+  isOpen: boolean;
+  selectedPack: NeckPack["id"];
+  openCheckout: (pack?: NeckPack["id"]) => void;
+  closeCheckout: () => void;
+  setSelectedPack: (pack: NeckPack["id"]) => void;
+}>((set) => ({
+  isOpen: false,
+  selectedPack: "p2",
+  openCheckout: (pack) => set((state) => ({ isOpen: true, selectedPack: pack ?? state.selectedPack })),
+  closeCheckout: () => set({ isOpen: false }),
+  setSelectedPack: (pack) => set({ selectedPack: pack }),
+}));
+
 export const NECK_PACKS: NeckPack[] = [
   {
     id: "p1",
     label: "1 unidad",
     qty: 1,
-    price: 39,
-    perUnit: 39,
+    price: 45,
+    perUnit: 45,
   },
   {
     id: "p2",
@@ -32,7 +48,7 @@ export const NECK_PACKS: NeckPack[] = [
     qty: 2,
     price: 65,
     perUnit: 32.5,
-    saving: "Ahorras $13",
+    saving: "Ahorras $25",
     badge: "⭐ Más elegido",
   },
   {
@@ -41,7 +57,7 @@ export const NECK_PACKS: NeckPack[] = [
     qty: 3,
     price: 82,
     perUnit: 27.3,
-    saving: "Ahorras $35",
+    saving: "Ahorras $53",
   },
 ];
 
@@ -59,8 +75,9 @@ type CheckoutForm = z.infer<typeof checkoutSchema>;
 const fieldClass =
   "mt-1 w-full rounded-2xl border border-slate-300 bg-white p-3.5 text-slate-900 placeholder:text-slate-400";
 
-export function NeckRelaxPackSelector({ onPick }: { onPick?: (pack: NeckPack) => void }) {
-  const [selected, setSelected] = useState<NeckPack["id"]>("p2");
+export function NeckRelaxPackSelector() {
+  const selected = useNeckRelaxStore((state) => state.selectedPack);
+  const setSelected = useNeckRelaxStore((state) => state.setSelectedPack);
 
   return (
     <div>
@@ -72,11 +89,9 @@ export function NeckRelaxPackSelector({ onPick }: { onPick?: (pack: NeckPack) =>
           const active = selected === pack.id;
           return (
             <button
+              type="button"
               key={pack.id}
-              onClick={() => {
-                setSelected(pack.id);
-                onPick?.(pack);
-              }}
+              onClick={() => setSelected(pack.id)}
               className={`group relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition active:scale-[0.99] ${
                 active
                   ? "border-2 border-sky-600 bg-sky-50 shadow-sm ring-2 ring-sky-100"
@@ -115,10 +130,32 @@ export function NeckRelaxPackSelector({ onPick }: { onPick?: (pack: NeckPack) =>
   );
 }
 
+export function NeckRelaxBuyButton({ className, children }: { className?: string; children: React.ReactNode }) {
+  return (
+    <button
+      onClick={(e) => {
+        e.preventDefault();
+        window.dispatchEvent(new CustomEvent("open-neckrelax-checkout"));
+      }}
+      className={className}
+    >
+      {children}
+    </button>
+  );
+}
+
 export function NeckRelaxCheckout() {
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<NeckPack>(NECK_PACKS[1]);
   const [submitting, setSubmitting] = useState(false);
+
+  // Listen to open events
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener("open-neckrelax-checkout", handleOpen);
+    return () => window.removeEventListener("open-neckrelax-checkout", handleOpen);
+  }, []);
 
   const form = useForm<CheckoutForm>({
     resolver: zodResolver(checkoutSchema),
@@ -158,12 +195,23 @@ export function NeckRelaxCheckout() {
     router.push("/thank-you");
   }
 
+  if (!isOpen) return null;
+
   return (
-    <form
-      onSubmit={form.handleSubmit(submit)}
-      className="grid gap-5 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
-    >
-      <NeckRelaxPackSelector onPick={setSelected} />
+    <>
+      <div className="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
+      <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center pointer-events-none p-0 sm:p-4">
+        <form
+          onSubmit={form.handleSubmit(submit)}
+          className="grid gap-5 rounded-t-3xl sm:rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl w-full max-w-lg max-h-[90dvh] overflow-y-auto pointer-events-auto"
+        >
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-black text-slate-900">Tu Pedido</h2>
+            <button type="button" onClick={() => setIsOpen(false)} className="rounded-full bg-slate-100 px-3 py-1.5 font-bold text-slate-600 hover:bg-slate-200">
+              Cerrar
+            </button>
+          </div>
+          <NeckRelaxPackSelector />
 
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -235,6 +283,8 @@ export function NeckRelaxCheckout() {
       <p className="text-center text-[11px] font-bold text-slate-500">
         ✓ No te cobramos ahora · Confirmamos por WhatsApp antes de despachar
       </p>
-    </form>
+        </form>
+      </div>
+    </>
   );
 }

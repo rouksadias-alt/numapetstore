@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { NeckRelaxCheckout, NeckRelaxPackSelector } from "@/components/NeckRelaxOffers";
+import { NeckRelaxCheckout, NeckRelaxPackSelector, NeckRelaxBuyButton } from "@/components/NeckRelaxOffers";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Animations";
 
 export const metadata = {
@@ -99,9 +99,9 @@ export default function NeckRelaxLanding() {
             <a href="#beneficios" className="hover:text-sky-600 transition-colors">Beneficios</a>
             <a href="#como-usar" className="hover:text-sky-600 transition-colors">Cómo usar</a>
             <a href="#testimonios" className="hover:text-sky-600 transition-colors">Reseñas</a>
-            <a href="#pedir" className="rounded-full bg-slate-900 px-5 py-2 text-white shadow-lg transition-transform hover:scale-105 hover:bg-slate-800">
+            <NeckRelaxBuyButton className="rounded-full bg-slate-900 px-5 py-2 text-white shadow-lg transition-transform hover:scale-105 hover:bg-slate-800">
               Pedir ahora
-            </a>
+            </NeckRelaxBuyButton>
           </nav>
         </div>
       </header>
@@ -196,12 +196,9 @@ export default function NeckRelaxLanding() {
               <div id="pack" className="mt-8 rounded-[2rem] border border-white bg-white p-6 shadow-xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-sky-100 rounded-bl-full -z-10 opacity-50"></div>
                 <NeckRelaxPackSelector />
-                <a
-                  href="#pedir"
-                  className="mt-5 block w-full rounded-full bg-slate-900 px-6 py-4 text-center text-lg font-black text-white shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-1 hover:shadow-[0_15px_25px_-10px_rgba(0,0,0,0.6)] active:scale-95"
-                >
+                <NeckRelaxBuyButton className="mt-5 block w-full rounded-full bg-slate-900 px-6 py-4 text-center text-lg font-black text-white shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-1 hover:shadow-[0_15px_25px_-10px_rgba(0,0,0,0.6)] active:scale-95">
                   Pedir mi NeckRelax — Pago al recibir →
-                </a>
+                </NeckRelaxBuyButton>
                 <p className="mt-3 text-center text-xs font-bold text-slate-500 flex justify-center gap-2 items-center">
                   <span>🛡️ Garantía 30 días</span>
                   <span>•</span>
@@ -229,8 +226,7 @@ export default function NeckRelaxLanding() {
       </section>
 
       {/* PAIN SECTION */}
-      <section id="problema" className="px-5 py-24 relative">
-        <div className="absolute inset-0 bg-slate-900 -z-20 clip-path-slant"></div>
+      <section id="problema" className="px-5 py-24 relative bg-slate-900">
         <div className="mx-auto max-w-5xl text-center">
           <FadeIn>
             <p className="text-sm font-black uppercase tracking-[0.25em] text-sky-400">
@@ -522,8 +518,14 @@ export default function NeckRelaxLanding() {
             </div>
           </FadeIn>
           
-          <FadeIn direction="left" delay={0.2} className="text-slate-900">
-            <NeckRelaxCheckout />
+          <FadeIn direction="left" delay={0.2} className="flex flex-col items-center justify-center text-center">
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm w-full">
+              <p className="text-2xl font-black text-white">¿Listo para relajarte?</p>
+              <p className="mt-2 text-slate-300">Completa tus datos de envío en nuestro formulario seguro.</p>
+              <NeckRelaxBuyButton className="mt-8 w-full rounded-full bg-sky-500 px-8 py-4 text-xl font-black text-white shadow-lg transition-transform hover:scale-105 active:scale-95">
+                Abrir formulario de pedido →
+              </NeckRelaxBuyButton>
+            </div>
           </FadeIn>
         </div>
       </section>
@@ -535,6 +537,7 @@ export default function NeckRelaxLanding() {
           Consulta con tu médico antes de usar si tienes marcapasos o condiciones médicas graves.
         </p>
       </footer>
+      <NeckRelaxCheckout />
     </div>
   );
 }
