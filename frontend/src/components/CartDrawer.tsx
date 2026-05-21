@@ -166,7 +166,7 @@ export function CartDrawer() {
           <button
             disabled={lines.length === 0}
             onClick={openCheckout}
-            className="mt-4 w-full rounded-full bg-[#b4155a] px-6 py-4 font-black text-white shadow-md transition active:scale-[0.99] hover:bg-[#95104a] disabled:opacity-40"
+            className="mt-4 w-full rounded-full bg-[var(--color-sky-600, #0284c7)] px-6 py-4 font-black text-white shadow-md transition active:scale-[0.99] hover:bg-[var(--color-sky-700, #0369a1)] disabled:opacity-40"
           >
             Reservar mi pedido — Pago al recibir
           </button>
@@ -177,11 +177,13 @@ export function CartDrawer() {
       </aside>
 
       {checkoutState === "checkout" ? (
-        <div className="fixed inset-0 z-[60] flex items-end justify-center bg-slate-950/60 sm:items-center sm:p-4">
-          <form
-            onSubmit={form.handleSubmit(submitOrder)}
-            className="flex max-h-[95dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-3xl bg-white text-slate-950 shadow-2xl sm:max-h-[90dvh] sm:rounded-3xl"
-          >
+        <>
+          <div className="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm" onClick={closeCheckout} />
+          <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center pointer-events-none p-0 sm:p-4">
+            <form
+              onSubmit={form.handleSubmit(submitOrder)}
+              className="flex max-h-[95dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-3xl bg-white text-slate-950 shadow-2xl sm:max-h-[90dvh] sm:rounded-3xl pointer-events-auto"
+            >
             <div className="flex-1 overflow-y-auto px-5 pb-5 pt-6 sm:px-6 sm:pt-7">
               <p className="font-bold text-teal-700">Datos para confirmar entrega</p>
               <h2 className="mt-1 text-2xl font-black sm:text-3xl">Confirma tu pedido COD</h2>
@@ -226,17 +228,17 @@ export function CartDrawer() {
               />
               <p className="mt-1 text-sm text-red-600">{form.formState.errors.city?.message}</p>
 
-              <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-2xl border border-[#ead3dd] bg-[#fff7fb] p-3.5">
+              <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-2xl border border-[var(--color-slate-200, #e2e8f0)] bg-[var(--color-slate-50, #f8fafc)] p-3.5">
                 <input
                   type="checkbox"
-                  className="mt-1 size-5 accent-[#b4155a]"
+                  className="mt-1 size-5 accent-[var(--color-sky-600, #0284c7)]"
                   {...form.register("fastShipping")}
                 />
                 <span>
-                  <span className="block font-black text-[#2a1620]">
+                  <span className="block font-black text-[var(--color-slate-900, #0f172a)]">
                     Agregar envio rapido +$2
                   </span>
-                  <span className="mt-1 block text-sm text-[#6c4a58]">
+                  <span className="mt-1 block text-sm text-[var(--color-slate-600, #475569)]">
                     Prioridad de confirmacion y despacho en zonas disponibles.
                   </span>
                 </span>
@@ -278,9 +280,9 @@ export function CartDrawer() {
             <div className="border-t border-slate-200 bg-white px-5 py-4 shadow-[0_-8px_16px_-8px_rgba(0,0,0,0.08)] sm:px-6">
               <div className="mb-2 flex items-center justify-between text-sm">
                 <span className="font-bold text-slate-600">Total a pagar al recibir</span>
-                <span className="text-lg font-black text-[#2a1620]">${checkoutTotal}</span>
+                <span className="text-lg font-black text-[var(--color-slate-900, #0f172a)]">${checkoutTotal}</span>
               </div>
-              <button className="w-full rounded-full bg-[#b4155a] px-6 py-3.5 text-base font-black text-white shadow-md transition active:scale-[0.99] hover:bg-[#95104a]">
+              <button className="w-full rounded-full bg-[var(--color-sky-600, #0284c7)] px-6 py-3.5 text-base font-black text-white shadow-md transition active:scale-[0.99] hover:bg-[var(--color-sky-700, #0369a1)]">
                 Confirmar mi pedido — Pago al recibir
               </button>
               <div className="mt-2 flex items-center justify-center gap-3 text-[11px] font-bold text-slate-500">
@@ -297,6 +299,7 @@ export function CartDrawer() {
             </div>
           </form>
         </div>
+        </>
       ) : null}
 
     </>
@@ -308,7 +311,7 @@ export function CartButton() {
   return (
     <button
       onClick={openCart}
-      className="grid size-10 place-items-center rounded-full border border-[#ead3dd] bg-white text-sm font-black text-[#2a1620]"
+      className="grid size-10 place-items-center rounded-full border border-[var(--color-slate-200, #e2e8f0)] bg-white text-sm font-black text-[var(--color-slate-900, #0f172a)]"
       aria-label={`Carrito con ${items.length} productos`}
     >
       🛒
@@ -322,7 +325,7 @@ export function AddVariantButton({ productSlug, variantId = "m" }: { productSlug
   return (
     <button
       onClick={() => addVariant(productSlug, variantId)}
-      className="w-full rounded-full bg-[#b4155a] px-6 py-3.5 text-center font-black text-white shadow-md transition active:scale-[0.99] hover:bg-[#95104a]"
+      className="w-full rounded-full bg-[var(--color-sky-600, #0284c7)] px-6 py-3.5 text-center font-black text-white shadow-md transition active:scale-[0.99] hover:bg-[var(--color-sky-700, #0369a1)]"
     >
       {variant ? `Lo quiero — ${variant.label} · $${variant.price}` : "Agregar al carrito"}
     </button>
@@ -333,7 +336,7 @@ export function VariantSelector({ productSlug }: { productSlug: ProductSlug }) {
   const addVariant = useCartStore((state) => state.addVariant);
   return (
     <div>
-      <p className="mb-3 text-xs font-black uppercase tracking-wider text-[#7b5867]">
+      <p className="mb-3 text-xs font-black uppercase tracking-wider text-[var(--color-slate-500, #64748b)]">
         Elige tu talla
       </p>
       <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
@@ -343,23 +346,23 @@ export function VariantSelector({ productSlug }: { productSlug: ProductSlug }) {
             <button
               key={variant.id}
               onClick={() => addVariant(productSlug, variant.id)}
-              className={`group relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition active:scale-[0.99] hover:border-[#b4155a] sm:rounded-3xl sm:p-5 ${
+              className={`group relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition active:scale-[0.99] hover:border-[var(--color-sky-600, #0284c7)] sm:rounded-3xl sm:p-5 ${
                 isPopular
-                  ? "border-2 border-[#b4155a] bg-[#fff5f9] shadow-sm ring-2 ring-[#f2c6d8]"
-                  : "border-[#ead3dd] bg-white"
+                  ? "border-2 border-[var(--color-sky-600, #0284c7)] bg-[var(--color-sky-50, #f0f9ff)] shadow-sm ring-2 ring-[var(--color-sky-200, #bae6fd)]"
+                  : "border-[var(--color-slate-200, #e2e8f0)] bg-white"
               }`}
             >
               {isPopular ? (
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[#b4155a] px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-white shadow-sm whitespace-nowrap">
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-[var(--color-sky-600, #0284c7)] px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-white shadow-sm whitespace-nowrap">
                   ⭐ Popular
                 </span>
               ) : null}
 
-              <p className="text-lg font-black text-[#2a1620]">{variant.label}</p>
-              <p className="text-xs text-[#7b5867] leading-tight">{variant.size}</p>
+              <p className="text-lg font-black text-[var(--color-slate-900, #0f172a)]">{variant.label}</p>
+              <p className="text-xs text-[var(--color-slate-500, #64748b)] leading-tight">{variant.size}</p>
 
               <div className="mt-2 flex w-full items-end justify-between gap-1">
-                <p className="text-2xl font-black tracking-tight text-[#b4155a]">
+                <p className="text-2xl font-black tracking-tight text-[var(--color-sky-600, #0284c7)]">
                   ${variant.price}
                 </p>
                 {variant.badge ? (
@@ -388,13 +391,13 @@ export function MobileBuyBar({
   const variant = variants.find((v) => v.id === variantId);
   if (!variant) return null;
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#ead3dd] bg-white/95 px-4 py-3 shadow-[0_-8px_24px_-12px_rgba(180,21,90,0.25)] backdrop-blur lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--color-slate-200, #e2e8f0)] bg-white/95 px-4 py-3 shadow-[0_-8px_24px_-12px_rgba(180,21,90,0.25)] backdrop-blur lg:hidden">
       <button
         onClick={() => {
           addVariant(productSlug, variantId);
           openCart();
         }}
-        className="flex w-full items-center justify-between gap-3 rounded-full bg-[#b4155a] px-5 py-3.5 text-white shadow-md transition active:scale-[0.99]"
+        className="flex w-full items-center justify-between gap-3 rounded-full bg-[var(--color-sky-600, #0284c7)] px-5 py-3.5 text-white shadow-md transition active:scale-[0.99]"
       >
         <div className="flex flex-col items-start leading-tight">
           <span className="text-[10px] font-bold uppercase tracking-wider opacity-80">

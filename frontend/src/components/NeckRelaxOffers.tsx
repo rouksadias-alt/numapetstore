@@ -195,7 +195,7 @@ export function NeckRelaxCheckout() {
 
   return (
     <>
-      <div className="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
+            <div className="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm" onClick={closeCheckout} />
       <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center pointer-events-none p-0 sm:p-4">
         <form
           onSubmit={form.handleSubmit(submit)}
@@ -203,7 +203,7 @@ export function NeckRelaxCheckout() {
         >
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-black text-slate-900">Tu Pedido</h2>
-            <button type="button" onClick={() => setIsOpen(false)} className="rounded-full bg-slate-100 px-3 py-1.5 font-bold text-slate-600 hover:bg-slate-200">
+            <button type="button" onClick={closeCheckout} className="rounded-full bg-slate-100 px-3 py-1.5 font-bold text-slate-600 hover:bg-slate-200">
               Cerrar
             </button>
           </div>
