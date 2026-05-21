@@ -195,7 +195,7 @@ export function NeckRelaxCheckout() {
 
   return (
     <>
-            <div className="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm" onClick={closeCheckout} />
+      <div className="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm" onClick={closeCheckout} />
       <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center pointer-events-none p-0 sm:p-4">
         <form
           onSubmit={form.handleSubmit(submit)}
