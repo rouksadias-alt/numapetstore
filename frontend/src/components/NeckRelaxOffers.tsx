@@ -131,11 +131,12 @@ export function NeckRelaxPackSelector() {
 }
 
 export function NeckRelaxBuyButton({ className, children }: { className?: string; children: React.ReactNode }) {
+  const openCheckout = useNeckRelaxStore((state) => state.openCheckout);
   return (
     <button
       onClick={(e) => {
         e.preventDefault();
-        window.dispatchEvent(new CustomEvent("open-neckrelax-checkout"));
+        openCheckout();
       }}
       className={className}
     >
@@ -146,16 +147,11 @@ export function NeckRelaxBuyButton({ className, children }: { className?: string
 
 export function NeckRelaxCheckout() {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<NeckPack>(NECK_PACKS[1]);
+  const isOpen = useNeckRelaxStore((state) => state.isOpen);
+  const closeCheckout = useNeckRelaxStore((state) => state.closeCheckout);
+  const selectedId = useNeckRelaxStore((state) => state.selectedPack);
+  const selected = NECK_PACKS.find((p) => p.id === selectedId) || NECK_PACKS[1];
   const [submitting, setSubmitting] = useState(false);
-
-  // Listen to open events
-  useEffect(() => {
-    const handleOpen = () => setIsOpen(true);
-    window.addEventListener("open-neckrelax-checkout", handleOpen);
-    return () => window.removeEventListener("open-neckrelax-checkout", handleOpen);
-  }, []);
 
   const form = useForm<CheckoutForm>({
     resolver: zodResolver(checkoutSchema),
