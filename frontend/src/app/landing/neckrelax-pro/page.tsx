@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 
 import { NeckRelaxCheckout, NeckRelaxPackSelector, NeckRelaxBuyButton } from "@/components/NeckRelaxOffers";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Animations";
@@ -92,9 +93,7 @@ export default function NeckRelaxLanding() {
       {/* HEADER */}
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-          <Link href="/" className="text-xl font-black tracking-tight text-slate-900 transition-transform hover:scale-105">
-            Numa<span className="text-sky-600">Wellness</span>
-          </Link>
+          <Logo brand="numawellness" />
           <nav className="hidden gap-6 text-sm font-bold text-slate-600 md:flex items-center">
             <a href="#beneficios" className="hover:text-sky-600 transition-colors">Beneficios</a>
             <a href="#como-usar" className="hover:text-sky-600 transition-colors">Cómo usar</a>

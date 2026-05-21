@@ -18,7 +18,7 @@ export function ThankYouContent() {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
   const whatsappHref = whatsappNumber
     ? `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-        "Hola! Tengo una pregunta sobre mi pedido en NumaWellness.",
+        "Hola! Tengo una pregunta sobre mi pedido en Numapet.",
       )}`
     : null;
 

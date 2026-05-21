@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NumaWellness | Bienestar y mascotas en Panamá",
+  title: "Numapet | Bienestar y mascotas en Panamá",
   description:
     "Productos premium para bienestar y hogares con mascotas en Panamá. Pago contra entrega.",
 };

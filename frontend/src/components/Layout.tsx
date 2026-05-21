@@ -28,7 +28,7 @@ export function SiteFooter() {
         <div>
           <Logo variant="light" />
           <p className="mt-4 max-w-md text-slate-300">
-            NumaWellness reúne soluciones premium para bienestar personal y hogares con
+            Numapet reúne soluciones premium para bienestar personal y hogares con
             mascotas en Panamá — con pago contra entrega.
           </p>
         </div>
