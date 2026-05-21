@@ -20,6 +20,9 @@ const checkoutSchema = z.object({
   fastShipping: z.boolean(),
 });
 
+const fieldClass =
+  "mt-2 w-full rounded-2xl border border-slate-300 bg-white p-3.5 text-slate-900 placeholder:text-slate-400";
+
 type CheckoutForm = z.infer<typeof checkoutSchema>;
 
 export function CartDrawer() {
@@ -139,7 +142,7 @@ export function CartDrawer() {
 
           {crossSell ? (
             <div className="mt-6 rounded-3xl bg-teal-50 p-5">
-              <p className="text-sm font-black text-teal-800">Completa tu rutina Numapet</p>
+              <p className="text-sm font-black text-sky-800">Completa tu pedido NumaWellness</p>
               <h3 className="mt-1 text-xl font-black">{crossSell.name}</h3>
               <p className="mt-2 text-sm text-slate-600">{crossSell.cardSubheading}</p>
               <button
@@ -188,7 +191,7 @@ export function CartDrawer() {
 
               <label className="mt-4 block text-sm font-bold">Nombre y Apellido</label>
               <input
-                className="mt-2 w-full rounded-2xl border border-slate-300 p-3.5"
+                className={fieldClass}
                 placeholder="Nombre y Apellido"
                 autoComplete="name"
                 {...form.register("fullName")}
@@ -197,7 +200,7 @@ export function CartDrawer() {
 
               <label className="mt-3 block text-sm font-bold">Telefono</label>
               <input
-                className="mt-2 w-full rounded-2xl border border-slate-300 p-3.5"
+                className={fieldClass}
                 placeholder="6XXX-XXXX"
                 inputMode="tel"
                 autoComplete="tel"
@@ -207,7 +210,7 @@ export function CartDrawer() {
 
               <label className="mt-3 block text-sm font-bold">Direccion</label>
               <input
-                className="mt-2 w-full rounded-2xl border border-slate-300 p-3.5"
+                className={fieldClass}
                 placeholder="Direccion"
                 autoComplete="street-address"
                 {...form.register("address")}
@@ -216,7 +219,7 @@ export function CartDrawer() {
 
               <label className="mt-3 block text-sm font-bold">Ciudad</label>
               <input
-                className="mt-2 w-full rounded-2xl border border-slate-300 p-3.5"
+                className={fieldClass}
                 placeholder="Ciudad"
                 autoComplete="address-level2"
                 {...form.register("city")}

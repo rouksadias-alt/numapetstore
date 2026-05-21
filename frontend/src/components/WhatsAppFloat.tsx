@@ -1,6 +1,6 @@
 "use client";
 
-const DEFAULT_MESSAGE = "Hola! Tengo una pregunta sobre Numapetstore.";
+const DEFAULT_MESSAGE = "Hola! Tengo una pregunta sobre NumaWellness.";
 
 export function WhatsAppFloat() {
   const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;

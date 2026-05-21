@@ -7,7 +7,7 @@ export default function CollectionPage() {
     <AppShell>
       <main className="bg-[#f7f2e8] px-5 py-16 text-slate-950">
         <div className="mx-auto max-w-7xl">
-          <p className="font-black text-teal-700">Coleccion Numapet</p>
+          <p className="font-black text-sky-700">Colección NumaWellness</p>
           <h1 className="mt-3 max-w-4xl text-5xl font-black tracking-tight">
             Kits premium para limpiar, hidratar y entretener mejor.
           </h1>

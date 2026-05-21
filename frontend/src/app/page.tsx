@@ -19,7 +19,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:gap-10">
             <div className="order-2 text-center lg:order-1 lg:text-left">
               <p className="text-[11px] font-black uppercase tracking-[0.25em] text-[#b4155a]">
-                Numapet Ritual · Panamá
+                NumaWellness · Panamá
               </p>
               <div className="mt-2 flex items-center justify-center gap-2 text-sm font-bold text-[#2a1620] lg:justify-start">
                 <span className="text-amber-500">★★★★★</span>
@@ -129,7 +129,7 @@ export default function Home() {
           <div className="mb-8 max-w-3xl">
             <p className="font-black text-teal-700">Coleccion principal</p>
             <h2 className="mt-2 text-4xl font-black tracking-tight text-center md:text-left">
-              Elige tu ritual Numapet.
+              Elige tu ritual NumaWellness.
             </h2>
           </div>
           <div className="grid gap-6 lg:grid-cols-3">

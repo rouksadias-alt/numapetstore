@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Numapetstore | Rutinas premium para mascotas en Panama",
+  title: "NumaWellness | Bienestar y mascotas en Panamá",
   description:
-    "Tienda DTC premium para mascotas en Panama con pago contra entrega.",
+    "Productos premium para bienestar y hogares con mascotas en Panamá. Pago contra entrega.",
 };
 
 export default function RootLayout({

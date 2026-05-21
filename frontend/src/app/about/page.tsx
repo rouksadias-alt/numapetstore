@@ -5,10 +5,10 @@ export default function AboutPage() {
     <AppShell>
       <main className="bg-[#f7f2e8] px-5 py-16 text-slate-950">
         <div className="mx-auto max-w-5xl">
-          <p className="font-black text-teal-700">Sobre Numapetstore</p>
+          <p className="font-black text-sky-700">Sobre NumaWellness</p>
           <h1 className="mt-3 text-5xl font-black tracking-tight">
-            Creamos Numapetstore para hogares panamenos que aman a sus mascotas,
-            pero tambien quieren vivir mas tranquilos.
+            Creamos NumaWellness para hogares panameños que buscan bienestar, confort y
+            tranquilidad en el día a día.
           </h1>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[

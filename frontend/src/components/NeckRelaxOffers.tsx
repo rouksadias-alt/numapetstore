@@ -56,6 +56,9 @@ const checkoutSchema = z.object({
 
 type CheckoutForm = z.infer<typeof checkoutSchema>;
 
+const fieldClass =
+  "mt-1 w-full rounded-2xl border border-slate-300 bg-white p-3.5 text-slate-900 placeholder:text-slate-400";
+
 export function NeckRelaxPackSelector({ onPick }: { onPick?: (pack: NeckPack) => void }) {
   const [selected, setSelected] = useState<NeckPack["id"]>("p2");
 
@@ -167,7 +170,7 @@ export function NeckRelaxCheckout() {
           <label className="text-xs font-bold text-slate-600">Nombre y apellido</label>
           <input
             {...form.register("fullName")}
-            className="mt-1 w-full rounded-2xl border border-slate-300 p-3.5"
+            className={fieldClass}
             placeholder="Ej: María Rodríguez"
             autoComplete="name"
           />
@@ -180,7 +183,7 @@ export function NeckRelaxCheckout() {
             {...form.register("phone")}
             inputMode="tel"
             autoComplete="tel"
-            className="mt-1 w-full rounded-2xl border border-slate-300 p-3.5"
+            className={fieldClass}
             placeholder="6XXX-XXXX"
           />
           <p className="mt-1 text-xs text-red-600">{form.formState.errors.phone?.message}</p>
@@ -191,7 +194,7 @@ export function NeckRelaxCheckout() {
           <input
             {...form.register("city")}
             autoComplete="address-level2"
-            className="mt-1 w-full rounded-2xl border border-slate-300 p-3.5"
+            className={fieldClass}
             placeholder="Ej: Ciudad de Panamá"
           />
           <p className="mt-1 text-xs text-red-600">{form.formState.errors.city?.message}</p>
@@ -202,7 +205,7 @@ export function NeckRelaxCheckout() {
           <input
             {...form.register("address")}
             autoComplete="street-address"
-            className="mt-1 w-full rounded-2xl border border-slate-300 p-3.5"
+            className={fieldClass}
             placeholder="Calle, edificio, apto, referencia..."
           />
           <p className="mt-1 text-xs text-red-600">{form.formState.errors.address?.message}</p>
