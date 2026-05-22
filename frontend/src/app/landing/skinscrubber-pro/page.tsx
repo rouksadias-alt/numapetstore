@@ -291,30 +291,30 @@ export default function SkinScrubberLanding() {
         </div>
         <div className="relative mx-auto max-w-4xl">
           <FadeIn className="mb-14 text-center">
-            <span className="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-stone-400">
+            <span className="inline-block rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-black uppercase tracking-wider text-slate-500">
               Súper fácil de usar
             </span>
-            <h2 className="mt-4 text-4xl font-black tracking-tight md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black tracking-tight md:text-5xl text-slate-900">
               Facial de spa en casa.<br />
-              <span className="text-stone-500">Sin cita. Sin salir.</span>
+              <span className="text-slate-500">Sin cita. Sin salir.</span>
             </h2>
           </FadeIn>
           <div className="grid gap-8 md:grid-cols-3">
             {HOW_TO.map((s, i) => (
               <FadeIn key={s.n} delay={i * 0.15}>
                 <div className="text-center">
-                  <span className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-900 text-3xl font-black text-white shadow-[0_0_30px_rgba(15,23,42,0.2)] mx-auto">
+                  <span className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-900 text-3xl font-black text-white shadow-[0_0_30px_rgba(15,23,42,0.1)] mx-auto">
                     {s.n}
                   </span>
-                  <h3 className="mt-5 text-xl font-black text-white">{s.title}</h3>
-                  <p className="mt-2 text-slate-300 leading-relaxed">{s.text}</p>
+                  <h3 className="mt-5 text-xl font-black text-slate-900">{s.title}</h3>
+                  <p className="mt-2 text-slate-600 leading-relaxed">{s.text}</p>
                 </div>
               </FadeIn>
             ))}
           </div>
-          <FadeIn delay={0.4} className="mt-12 rounded-3xl border border-amber-400/30 bg-amber-400/10 p-6 text-center">
-            <p className="font-black text-amber-300 text-lg">⚠️ Importante: siempre sobre piel húmeda</p>
-            <p className="mt-2 text-slate-300 text-sm">Máximo 2–3 veces por semana. No reemplaza al dermatólogo, es apoyo a tu rutina skincare.</p>
+          <FadeIn delay={0.4} className="mt-12 rounded-3xl border border-amber-200 bg-amber-50 p-6 text-center">
+            <p className="font-black text-amber-600 text-lg">⚠️ Importante: siempre sobre piel húmeda</p>
+            <p className="mt-2 text-amber-800/70 text-sm">Máximo 2–3 veces por semana. No reemplaza al dermatólogo, es apoyo a tu rutina skincare.</p>
           </FadeIn>
         </div>
       </section>
