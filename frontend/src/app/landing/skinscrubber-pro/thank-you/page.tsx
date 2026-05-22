@@ -11,17 +11,38 @@ export const metadata: Metadata = {
 const REVIEWS = [
   {
     name: "Valeria R.",
+    location: "Ciudad de Panamá",
     text: "Primera vez que uso algo así y quedé con la cara como bebé. Los puntos negros de la nariz: literalmente desaparecieron. Lo voy a regalar a mi mamá también.",
     stars: "★★★★★",
   },
   {
     name: "Daniela M.",
+    location: "Miraflores",
     text: "Tres semanas usando 2 veces por semana y mis poros visiblemente más pequeños. Mi base entra mucho más suave. Esto es real, no es hype.",
     stars: "★★★★★",
   },
   {
     name: "Karla B.",
+    location: "San Miguelito",
     text: "Piel grasa mixta de siempre y NADA me la controlaba. Con este aparatico en 5 minutos la cara queda fresca. Wow. 100% lo recomiendo.",
+    stars: "★★★★★",
+  },
+  {
+    name: "Andrea P.",
+    location: "Bella Vista",
+    text: "Me lo recomendó mi esteticista y tenía razón. Ahora lo hago en casa y ahorro un dineral. La primera sesión me quedé con la boca abierta de ver lo que salió.",
+    stars: "★★★★★",
+  },
+  {
+    name: "Luciana V.",
+    location: "El Cangrejo",
+    text: "Tenía miedo de que me irritara la piel (soy súper sensible) pero nada. Suavísimo. Ya van 4 semanas y mi piel luce diferente, la gente me pregunta qué estoy haciendo.",
+    stars: "★★★★★",
+  },
+  {
+    name: "Mariela C.",
+    location: "Los Andes, Panamá",
+    text: "Mi hija me lo mostró en TikTok y pensé que era otro gadget inútil. Me lo compré igual y wow — uso menos maquillaje porque la textura mejoró un montón.",
     stars: "★★★★★",
   },
 ];
@@ -118,9 +139,10 @@ export default function SkinScrubberThankYouPage() {
             <h2 className="text-2xl font-black text-slate-900 mb-6 text-center">
               Lo que te espera 👇
             </h2>
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {REVIEWS.map((r) => (
-                <div key={r.name} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div key={r.name} className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <div className="absolute top-4 right-5 text-rose-200 opacity-40 text-5xl font-serif leading-none">"</div>
                   <p className="text-lg font-black text-amber-500 mb-3">{r.stars}</p>
                   <p className="text-slate-700 italic leading-relaxed mb-4">"{r.text}"</p>
                   <div className="flex items-center gap-3">
@@ -129,6 +151,7 @@ export default function SkinScrubberThankYouPage() {
                     </div>
                     <div>
                       <p className="font-black text-slate-900 text-sm">{r.name}</p>
+                      <p className="text-[10px] text-slate-500">{r.location}</p>
                       <p className="text-xs font-bold text-green-600">✓ Compra verificada</p>
                     </div>
                   </div>

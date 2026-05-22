@@ -158,6 +158,8 @@ export function SkinScrubberCheckout() {
   const selectedId = useSkinScrubberStore((state) => state.selectedPack);
   const selected = SKIN_PACKS.find((p) => p.id === selectedId) || SKIN_PACKS[1];
   const [submitting, setSubmitting] = useState(false);
+  const [fastShipping, setFastShipping] = useState(false);
+  const total = selected.price + (fastShipping ? 2 : 0);
 
   const form = useForm<CheckoutForm>({
     resolver: zodResolver(checkoutSchema),
@@ -179,7 +181,7 @@ export function SkinScrubberCheckout() {
         address: values.address,
         city: values.city,
         currency: "USD",
-        total: selected.price,
+        total,
         items: [
           {
             product_slug: "skinscrubber-pro",
@@ -188,6 +190,9 @@ export function SkinScrubberCheckout() {
             quantity: selected.qty,
             price: selected.price,
           },
+          ...(fastShipping
+            ? [{ product_slug: "fast-shipping", product_name: "Envío rápido + seguro", offer_label: "Prioritario", quantity: 1, price: 2 }]
+            : []),
         ],
         session_id:
           typeof window !== "undefined" ? sessionStorage.getItem("nmp_sid") : null,
@@ -278,16 +283,40 @@ export function SkinScrubberCheckout() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between rounded-2xl bg-slate-50 p-4">
+          {/* Fast shipping checkbox */}
+          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-rose-200 bg-rose-50 p-4 transition hover:bg-rose-100">
+            <input
+              type="checkbox"
+              className="mt-0.5 h-5 w-5 shrink-0 accent-rose-500 cursor-pointer"
+              checked={fastShipping}
+              onChange={(e) => setFastShipping(e.target.checked)}
+            />
             <div>
+              <p className="font-black text-slate-900">
+                🚀 Envío prioritario + seguro — <span className="text-rose-500">+$2</span>
+              </p>
+              <p className="mt-0.5 text-xs font-bold text-slate-500">
+                Prioridad de despacho, empaque reforzado y seguro de entrega incluido.
+              </p>
+            </div>
+          </label>
+
+          <div className="rounded-2xl bg-slate-50 p-4">
+            <div className="flex items-center justify-between text-sm text-slate-600">
+              <span className="font-bold">Producto ({selected.label})</span>
+              <span>${selected.price}</span>
+            </div>
+            {fastShipping && (
+              <div className="flex items-center justify-between text-sm text-slate-600 mt-1">
+                <span className="font-bold">Envío prioritario + seguro</span>
+                <span>$2</span>
+              </div>
+            )}
+            <div className="mt-3 flex items-center justify-between border-t border-slate-200 pt-3">
               <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
                 Total a pagar al recibir
               </p>
-              <p className="text-2xl font-black text-slate-900">${selected.price}</p>
-            </div>
-            <div className="text-right text-xs font-bold text-slate-500">
-              {selected.label}
-              <br />${selected.perUnit.toFixed(0)}/u
+              <p className="text-2xl font-black text-slate-900">${total}</p>
             </div>
           </div>
 
@@ -297,7 +326,7 @@ export function SkinScrubberCheckout() {
           >
             {submitting
               ? "Procesando..."
-              : `Confirmar pedido — Pago al recibir $${selected.price}`}
+              : `Confirmar pedido — Pago al recibir $${total}`}
           </button>
           <p className="text-center text-[11px] font-bold text-slate-500">
             ✓ No te cobramos ahora · Confirmamos por WhatsApp antes de despachar
