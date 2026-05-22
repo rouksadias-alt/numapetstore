@@ -17,7 +17,7 @@ export function generateStaticParams() {
 }
 
 // Slugs that have their own dedicated standalone landing page
-const STANDALONE_PRODUCTS = new Set(["neckrelax-pro"]);
+const STANDALONE_PRODUCTS = new Set(["neckrelax-pro", "skinscrubber-pro"]);
 
 export default async function ProductPage({
   params,
