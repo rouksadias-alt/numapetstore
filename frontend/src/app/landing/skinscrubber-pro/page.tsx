@@ -215,19 +215,19 @@ export default function SkinScrubberLanding() {
       </section>
 
       {/* PROBLEM SECTION */}
-      <section className="bg-stone-100 px-5 py-20 text-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-10 left-10 h-64 w-64 rounded-full bg-slate-900 blur-3xl" />
-          <div className="absolute bottom-10 right-10 h-64 w-64 rounded-full bg-slate-700 blur-3xl" />
+      <section className="bg-slate-900 px-5 py-20 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 h-64 w-64 rounded-full bg-slate-400 blur-3xl" />
+          <div className="absolute bottom-10 right-10 h-64 w-64 rounded-full bg-stone-400 blur-3xl" />
         </div>
         <div className="relative mx-auto max-w-4xl text-center">
           <FadeIn>
-            <span className="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-stone-400">
+            <span className="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-slate-300">
               ¿Te suena familiar?
             </span>
             <h2 className="mt-5 text-4xl font-black tracking-tight md:text-5xl">
               Lavas, limpias, hidratas…<br />y la cara sigue
-              <span className="text-stone-300"> sucia por dentro.</span>
+              <span className="text-slate-400"> sucia por dentro.</span>
             </h2>
             <p className="mt-6 text-xl text-slate-300 max-w-2xl mx-auto">
               El jabón limpia la superficie, pero los poros son como túneles — la mugre acumulada, la grasa y los restos de maquillaje se quedan ahí dentro. Tu cara lo siente.
@@ -248,10 +248,10 @@ export default function SkinScrubberLanding() {
             ))}
           </StaggerChildren>
           <FadeIn delay={0.3}>
-            <div className="mt-12 rounded-3xl bg-slate-900/20 border border-slate-900/30 p-8">
+            <div className="mt-12 rounded-3xl bg-white/5 border border-white/10 p-8">
               <p className="text-2xl font-black text-white">
                 El problema no es tu rutina.<br />
-                <span className="text-stone-400">Es que el jabón no llega hasta ahí abajo.</span>
+                <span className="text-slate-400">Es que el jabón no llega hasta ahí abajo.</span>
               </p>
             </div>
           </FadeIn>
