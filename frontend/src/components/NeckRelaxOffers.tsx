@@ -188,7 +188,7 @@ export function NeckRelaxCheckout() {
       }),
     }).catch(() => null);
 
-    router.push("/thank-you");
+    router.push("/landing/neckrelax-pro/thank-you");
   }
 
   if (!isOpen) return null;
