@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 
@@ -82,6 +83,19 @@ export default function SkinScrubberThankYouPage() {
               <span>💵 Pago al recibir</span>
               <span>↩️ Garantía 30 días</span>
             </div>
+          </section>
+
+          {/* PRODUCT IN ACTION */}
+          <section className="grid gap-4 sm:grid-cols-3">
+            {[
+              { src: "/products/skinscrubber-action.jpg", alt: "Skin Scrubber Pro en acción" },
+              { src: "/products/skinscrubber-result.jpg", alt: "Resultado piel limpia" },
+              { src: "/products/skinscrubber-colors.jpg", alt: "Colores disponibles" },
+            ].map((img) => (
+              <div key={img.src} className="relative aspect-square overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+                <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" />
+              </div>
+            ))}
           </section>
 
           {/* TIPS */}

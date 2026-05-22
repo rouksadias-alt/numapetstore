@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Animations";
@@ -163,18 +164,19 @@ export default function SkinScrubberLanding() {
 
           <FadeIn direction="right" delay={0.15}>
             <div className="relative mx-auto max-w-sm lg:max-w-none">
-              {/* Hero product visual placeholder */}
-              <div className="relative aspect-square w-full overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-rose-100 to-pink-200 shadow-2xl">
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8">
-                  <span className="text-8xl">🔬</span>
-                  <p className="text-center text-2xl font-black text-rose-700">Skin Scrubber Pro</p>
-                  <p className="text-center text-sm font-bold text-rose-600">Limpiador Facial Ultrasónico</p>
-                </div>
+              <div className="relative aspect-square w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-slate-200">
+                <Image
+                  src="/products/skinscrubber-hero.jpg"
+                  alt="Skin Scrubber Pro — Limpiador Facial Ultrasónico"
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
                 <span className="absolute left-5 top-5 rounded-full bg-slate-900 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-white shadow-xl">
                   24,000 vibraciones/seg
                 </span>
               </div>
-              {/* Floating social proof */}
               <div className="absolute -bottom-4 -left-4 rounded-2xl bg-white border border-slate-200 p-3 shadow-xl">
                 <p className="text-xs font-black text-slate-900">⭐ 4.9/5</p>
                 <p className="text-[10px] text-slate-500">+900 reseñas Panamá</p>
@@ -185,6 +187,30 @@ export default function SkinScrubberLanding() {
               </div>
             </div>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* GALLERY */}
+      <section className="bg-white px-5 py-12">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:gap-4">
+            {[
+              { src: "/products/skinscrubber-lifestyle.jpg", alt: "Usando el Skin Scrubber en casa" },
+              { src: "/products/skinscrubber-action.jpg", alt: "Resultados del limpiador ultrasónico" },
+              { src: "/products/skinscrubber-result.jpg", alt: "Resultado piel limpia" },
+              { src: "/products/skinscrubber-detail.jpg", alt: "Detalle del Skin Scrubber Pro" },
+            ].map((img, i) => (
+              <div key={i} className={`relative overflow-hidden rounded-2xl shadow-sm border border-slate-200 ${i === 0 ? "col-span-2 row-span-2 aspect-square sm:aspect-auto sm:h-72" : "aspect-square"}`}>
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  sizes="(max-width: 640px) 50vw, 25vw"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
