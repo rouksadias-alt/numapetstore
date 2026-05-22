@@ -94,12 +94,12 @@ export function SkinScrubberPackSelector() {
               onClick={() => setSelected(pack.id)}
               className={`group relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition active:scale-[0.99] ${
                 active
-                  ? "border-2 border-rose-500 bg-rose-50 shadow-sm ring-2 ring-rose-100"
-                  : "border-slate-200 bg-white hover:border-rose-300"
+                  ? "border-2 border-slate-900 bg-stone-100 shadow-sm ring-2 ring-stone-200"
+                  : "border-slate-200 bg-white hover:border-slate-300"
               }`}
             >
               {pack.badge ? (
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-rose-500 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-white shadow-sm whitespace-nowrap">
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-white shadow-sm whitespace-nowrap">
                   {pack.badge}
                 </span>
               ) : null}
@@ -110,7 +110,7 @@ export function SkinScrubberPackSelector() {
               </p>
 
               <div className="mt-2 flex w-full items-end justify-between gap-1">
-                <p className="text-2xl font-black tracking-tight text-rose-600">
+                <p className="text-2xl font-black tracking-tight text-slate-800">
                   ${pack.price}
                 </p>
                 {pack.saving ? (
@@ -284,16 +284,16 @@ export function SkinScrubberCheckout() {
           </div>
 
           {/* Fast shipping checkbox */}
-          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-rose-200 bg-rose-50 p-4 transition hover:bg-rose-100">
+          <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-stone-200 bg-stone-100 p-4 transition hover:bg-stone-200">
             <input
               type="checkbox"
-              className="mt-0.5 h-5 w-5 shrink-0 accent-rose-500 cursor-pointer"
+              className="mt-0.5 h-5 w-5 shrink-0 accent-slate-900 cursor-pointer"
               checked={fastShipping}
               onChange={(e) => setFastShipping(e.target.checked)}
             />
             <div>
               <p className="font-black text-slate-900">
-                🚀 Envío prioritario + seguro — <span className="text-rose-500">+$2</span>
+                🚀 Envío prioritario + seguro — <span className="text-slate-900">+$2</span>
               </p>
               <p className="mt-0.5 text-xs font-bold text-slate-500">
                 Prioridad de despacho, empaque reforzado y seguro de entrega incluido.
@@ -322,7 +322,7 @@ export function SkinScrubberCheckout() {
 
           <button
             disabled={submitting}
-            className="w-full rounded-full bg-rose-500 px-6 py-4 font-black text-white shadow-md transition active:scale-[0.99] hover:bg-rose-600 disabled:opacity-50"
+            className="w-full rounded-full bg-slate-900 px-6 py-4 font-black text-white shadow-md transition active:scale-[0.99] hover:bg-slate-800 disabled:opacity-50"
           >
             {submitting
               ? "Procesando..."

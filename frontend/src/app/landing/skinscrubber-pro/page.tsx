@@ -102,40 +102,40 @@ const TRUST = [
 
 export default function SkinScrubberLanding() {
   return (
-    <div className="bg-slate-50 text-slate-900 overflow-x-hidden selection:bg-rose-100 selection:text-rose-900">
+    <div className="bg-slate-50 text-slate-900 overflow-x-hidden selection:bg-stone-200 selection:text-rose-900">
 
       {/* HEADER */}
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
           <Logo brand="numawellness" />
           <nav className="hidden gap-6 text-sm font-bold text-slate-600 md:flex items-center">
-            <a href="#beneficios" className="hover:text-rose-500 transition-colors">Beneficios</a>
-            <a href="#como-usar" className="hover:text-rose-500 transition-colors">Cómo usar</a>
-            <a href="#testimonios" className="hover:text-rose-500 transition-colors">Reseñas</a>
+            <a href="#beneficios" className="hover:text-slate-900 transition-colors">Beneficios</a>
+            <a href="#como-usar" className="hover:text-slate-900 transition-colors">Cómo usar</a>
+            <a href="#testimonios" className="hover:text-slate-900 transition-colors">Reseñas</a>
           </nav>
-          <SkinScrubberBuyButton className="rounded-full bg-rose-500 px-5 py-2.5 text-sm font-black text-white shadow-md hover:bg-rose-600 transition-transform hover:scale-105">
+          <SkinScrubberBuyButton className="rounded-full bg-slate-900 px-5 py-2.5 text-sm font-black text-white shadow-md hover:bg-slate-800 transition-transform hover:scale-105">
             Quiero el mío →
           </SkinScrubberBuyButton>
         </div>
       </header>
 
       {/* URGENCY BAR */}
-      <div className="bg-rose-500 px-5 py-2 text-center text-xs font-black text-white">
+      <div className="bg-slate-900 px-5 py-2 text-center text-xs font-black text-white">
         🔥 Stock limitado · Pago contra entrega · Envío en Panamá en 24–48h
       </div>
 
       {/* HERO */}
       <section className="relative px-5 py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-rose-50 via-slate-50 to-pink-50 -z-10" />
+        <div className="absolute inset-0 bg-stone-50 -z-10" />
         <div className="mx-auto max-w-6xl grid gap-12 lg:grid-cols-2 lg:items-center">
           <FadeIn direction="left">
             <div>
-              <span className="inline-block rounded-full bg-rose-100 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-rose-600 animate-pulse">
+              <span className="inline-block rounded-full bg-stone-200 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-slate-800 animate-pulse">
                 🔥 Trending en TikTok Panamá
               </span>
               <h1 className="mt-5 text-5xl font-black leading-[1.1] tracking-tight text-slate-900 md:text-6xl lg:text-7xl">
                 Poros limpios<br />
-                <span className="text-rose-500">en 5 minutos</span><br />
+                <span className="text-slate-900">en 5 minutos</span><br />
                 desde tu casa.
               </h1>
               <p className="mt-6 text-xl text-slate-600 leading-relaxed max-w-lg">
@@ -143,7 +143,7 @@ export default function SkinScrubberLanding() {
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <SkinScrubberBuyButton className="rounded-full bg-rose-500 px-8 py-4 text-lg font-black text-white shadow-[0_10px_30px_-10px_rgba(239,68,68,0.5)] transition-all hover:scale-105 hover:bg-rose-600 active:scale-95">
+                <SkinScrubberBuyButton className="rounded-full bg-slate-900 px-8 py-4 text-lg font-black text-white shadow-[0_10px_30px_-10px_rgba(15,23,42,0.3)] transition-all hover:scale-105 hover:bg-slate-800 active:scale-95">
                   Quiero mi Skin Scrubber — $39 →
                 </SkinScrubberBuyButton>
                 <p className="text-sm font-bold text-slate-500">
@@ -181,9 +181,9 @@ export default function SkinScrubberLanding() {
                 <p className="text-xs font-black text-slate-900">⭐ 4.9/5</p>
                 <p className="text-[10px] text-slate-500">+900 reseñas Panamá</p>
               </div>
-              <div className="absolute -top-4 -right-4 rounded-2xl bg-rose-500 p-3 shadow-xl">
+              <div className="absolute -top-4 -right-4 rounded-2xl bg-slate-900 p-3 shadow-xl">
                 <p className="text-xs font-black text-white">💵 Pago</p>
-                <p className="text-[10px] text-rose-100">al recibir</p>
+                <p className="text-[10px] text-stone-200">al recibir</p>
               </div>
             </div>
           </FadeIn>
@@ -215,19 +215,19 @@ export default function SkinScrubberLanding() {
       </section>
 
       {/* PROBLEM SECTION */}
-      <section className="bg-slate-900 px-5 py-20 text-white relative overflow-hidden">
+      <section className="bg-stone-100 px-5 py-20 text-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-10 left-10 h-64 w-64 rounded-full bg-rose-500 blur-3xl" />
-          <div className="absolute bottom-10 right-10 h-64 w-64 rounded-full bg-pink-500 blur-3xl" />
+          <div className="absolute top-10 left-10 h-64 w-64 rounded-full bg-slate-900 blur-3xl" />
+          <div className="absolute bottom-10 right-10 h-64 w-64 rounded-full bg-slate-700 blur-3xl" />
         </div>
         <div className="relative mx-auto max-w-4xl text-center">
           <FadeIn>
-            <span className="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-rose-300">
+            <span className="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-stone-400">
               ¿Te suena familiar?
             </span>
             <h2 className="mt-5 text-4xl font-black tracking-tight md:text-5xl">
               Lavas, limpias, hidratas…<br />y la cara sigue
-              <span className="text-rose-400"> sucia por dentro.</span>
+              <span className="text-stone-300"> sucia por dentro.</span>
             </h2>
             <p className="mt-6 text-xl text-slate-300 max-w-2xl mx-auto">
               El jabón limpia la superficie, pero los poros son como túneles — la mugre acumulada, la grasa y los restos de maquillaje se quedan ahí dentro. Tu cara lo siente.
@@ -248,10 +248,10 @@ export default function SkinScrubberLanding() {
             ))}
           </StaggerChildren>
           <FadeIn delay={0.3}>
-            <div className="mt-12 rounded-3xl bg-rose-500/20 border border-rose-500/30 p-8">
+            <div className="mt-12 rounded-3xl bg-slate-900/20 border border-slate-900/30 p-8">
               <p className="text-2xl font-black text-white">
                 El problema no es tu rutina.<br />
-                <span className="text-rose-300">Es que el jabón no llega hasta ahí abajo.</span>
+                <span className="text-stone-400">Es que el jabón no llega hasta ahí abajo.</span>
               </p>
             </div>
           </FadeIn>
@@ -262,18 +262,18 @@ export default function SkinScrubberLanding() {
       <section id="beneficios" className="px-5 py-20">
         <div className="mx-auto max-w-6xl">
           <FadeIn className="mb-14 text-center">
-            <span className="inline-block rounded-full bg-rose-100 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-rose-600">
+            <span className="inline-block rounded-full bg-stone-200 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-slate-800">
               Por qué funciona
             </span>
             <h2 className="mt-4 text-4xl font-black tracking-tight md:text-5xl">
-              Lo que el <span className="text-rose-500">ultrasonido</span> logra<br />
+              Lo que el <span className="text-slate-900">ultrasonido</span> logra<br />
               y tu limpieza normal no.
             </h2>
           </FadeIn>
           <StaggerChildren className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {BENEFITS.map((b) => (
               <StaggerItem key={b.title}>
-                <div className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md hover:border-rose-200">
+                <div className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md hover:border-stone-300">
                   <span className="text-4xl">{b.icon}</span>
                   <h3 className="mt-4 text-xl font-black text-slate-900">{b.title}</h3>
                   <p className="mt-2 text-slate-600 leading-relaxed">{b.text}</p>
@@ -285,25 +285,25 @@ export default function SkinScrubberLanding() {
       </section>
 
       {/* HOW TO */}
-      <section id="como-usar" className="bg-slate-900 px-5 py-20 text-white relative overflow-hidden">
+      <section id="como-usar" className="bg-stone-100 px-5 py-20 text-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 right-20 h-80 w-80 rounded-full bg-rose-400 blur-3xl" />
+          <div className="absolute top-20 right-20 h-80 w-80 rounded-full bg-stone-500 blur-3xl" />
         </div>
         <div className="relative mx-auto max-w-4xl">
           <FadeIn className="mb-14 text-center">
-            <span className="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-rose-300">
+            <span className="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-stone-400">
               Súper fácil de usar
             </span>
             <h2 className="mt-4 text-4xl font-black tracking-tight md:text-5xl">
               Facial de spa en casa.<br />
-              <span className="text-rose-400">Sin cita. Sin salir.</span>
+              <span className="text-stone-500">Sin cita. Sin salir.</span>
             </h2>
           </FadeIn>
           <div className="grid gap-8 md:grid-cols-3">
             {HOW_TO.map((s, i) => (
               <FadeIn key={s.n} delay={i * 0.15}>
                 <div className="text-center">
-                  <span className="flex h-20 w-20 items-center justify-center rounded-full bg-rose-500 text-3xl font-black text-white shadow-[0_0_30px_rgba(239,68,68,0.4)] mx-auto">
+                  <span className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-900 text-3xl font-black text-white shadow-[0_0_30px_rgba(15,23,42,0.2)] mx-auto">
                     {s.n}
                   </span>
                   <h3 className="mt-5 text-xl font-black text-white">{s.title}</h3>
@@ -320,15 +320,15 @@ export default function SkinScrubberLanding() {
       </section>
 
       {/* OFFER / PRICING */}
-      <section id="pedir" className="bg-gradient-to-br from-rose-50 to-pink-50 px-5 py-20 relative overflow-hidden">
+      <section id="pedir" className="bg-stone-100 px-5 py-20 relative overflow-hidden">
         <div className="relative mx-auto max-w-4xl">
           <FadeIn className="mb-12 text-center">
-            <span className="inline-block rounded-full bg-rose-500 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-white animate-pulse">
+            <span className="inline-block rounded-full bg-slate-900 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-white animate-pulse">
               🔥 Oferta de lanzamiento
             </span>
             <h2 className="mt-5 text-4xl font-black tracking-tight md:text-5xl text-slate-900">
               Elige tu pack y<br />
-              <span className="text-rose-500">paga solo al recibirlo.</span>
+              <span className="text-slate-900">paga solo al recibirlo.</span>
             </h2>
             <p className="mt-4 text-xl text-slate-600">Sin tarjeta. Sin riesgo. El delivery llega a tu puerta.</p>
           </FadeIn>
@@ -336,7 +336,7 @@ export default function SkinScrubberLanding() {
           <FadeIn delay={0.1} className="rounded-3xl bg-white border border-slate-200 p-8 shadow-xl">
             <SkinScrubberPackSelector />
             <div className="mt-6">
-              <SkinScrubberBuyButton className="w-full rounded-full bg-rose-500 px-8 py-5 text-xl font-black text-white shadow-lg transition-all hover:scale-[1.02] hover:bg-rose-600 active:scale-95">
+              <SkinScrubberBuyButton className="w-full rounded-full bg-slate-900 px-8 py-5 text-xl font-black text-white shadow-lg transition-all hover:scale-[1.02] hover:bg-slate-800 active:scale-95">
                 Confirmar pedido ahora — Pago al recibir →
               </SkinScrubberBuyButton>
             </div>
@@ -361,7 +361,7 @@ export default function SkinScrubberLanding() {
               <ul className="grid gap-2">
                 {INCLUDED.map((item) => (
                   <li key={item} className="flex items-center gap-3 text-slate-700 font-bold">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-500 text-white text-xs font-black">✓</span>
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white text-xs font-black">✓</span>
                     {item}
                   </li>
                 ))}
@@ -380,20 +380,20 @@ export default function SkinScrubberLanding() {
             </span>
             <h2 className="mt-4 text-4xl font-black tracking-tight md:text-5xl">
               Ellas ya lo probaron.<br />
-              <span className="text-rose-500">Sus poros tampoco mienten.</span>
+              <span className="text-slate-900">Sus poros tampoco mienten.</span>
             </h2>
           </FadeIn>
           <StaggerChildren className="grid gap-6 md:grid-cols-3">
             {REVIEWS.map((r, i) => (
               <StaggerItem key={r.name}>
                 <div className="relative rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-                  <div className="absolute top-6 right-6 text-rose-200 opacity-50 text-6xl font-serif leading-none">"</div>
+                  <div className="absolute top-6 right-6 text-stone-300 opacity-50 text-6xl font-serif leading-none">"</div>
                   <p className="text-xl font-black text-amber-500 mb-3">{r.stars}</p>
                   <p className="text-lg font-medium text-slate-700 italic leading-relaxed mb-5">
                     "{r.text}"
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-rose-500 text-white font-black text-lg">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-white font-black text-lg">
                       {r.name.charAt(0)}
                     </div>
                     <div>
@@ -409,9 +409,9 @@ export default function SkinScrubberLanding() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="bg-rose-500 px-5 py-20 text-white relative overflow-hidden">
+      <section className="bg-stone-100 px-5 py-20 text-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-br from-rose-400 to-pink-700" />
+          <div className="absolute top-0 left-0 h-full w-full bg-slate-900" />
         </div>
         <div className="relative mx-auto max-w-3xl text-center">
           <FadeIn>
@@ -419,13 +419,13 @@ export default function SkinScrubberLanding() {
               Tu cara te lo está pidiendo.<br />
               Dale lo que necesita.
             </h2>
-            <p className="mt-6 text-xl text-rose-100">
+            <p className="mt-6 text-xl text-slate-600">
               Limpieza profunda desde $39 — pago al recibir — entrega en Panamá.
             </p>
-            <SkinScrubberBuyButton className="mt-10 rounded-full bg-white px-10 py-5 text-xl font-black text-rose-600 shadow-2xl transition-all hover:scale-105 hover:shadow-rose-300/50 active:scale-95">
+            <SkinScrubberBuyButton className="mt-10 rounded-full bg-slate-900 px-10 py-5 text-xl font-black text-white shadow-2xl transition-all hover:scale-105 hover:shadow-stone-400/50 active:scale-95">
               Quiero mi Skin Scrubber ahora →
             </SkinScrubberBuyButton>
-            <p className="mt-5 text-sm font-bold text-rose-200">
+            <p className="mt-5 text-sm font-bold text-stone-300">
               ✓ Garantía 30 días · ✓ Stock en Panamá · ✓ Cero riesgo
             </p>
           </FadeIn>

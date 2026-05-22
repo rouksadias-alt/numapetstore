@@ -61,7 +61,7 @@ export default function SkinScrubberThankYouPage() {
   )}`;
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 selection:bg-rose-100">
+    <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 selection:bg-stone-200">
 
       <header className="border-b border-slate-200 bg-white px-5 py-4">
         <div className="mx-auto flex max-w-4xl justify-center sm:justify-start">
@@ -77,7 +77,7 @@ export default function SkinScrubberThankYouPage() {
             <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-4xl mb-6">
               🎉
             </div>
-            <p className="text-sm font-bold uppercase tracking-wider text-rose-500">
+            <p className="text-sm font-bold uppercase tracking-wider text-slate-900">
               Pedido Recibido
             </p>
             <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">
@@ -142,11 +142,11 @@ export default function SkinScrubberThankYouPage() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {REVIEWS.map((r) => (
                 <div key={r.name} className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                  <div className="absolute top-4 right-5 text-rose-200 opacity-40 text-5xl font-serif leading-none">"</div>
+                  <div className="absolute top-4 right-5 text-slate-200 opacity-40 text-5xl font-serif leading-none">"</div>
                   <p className="text-lg font-black text-amber-500 mb-3">{r.stars}</p>
                   <p className="text-slate-700 italic leading-relaxed mb-4">"{r.text}"</p>
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-rose-500 text-white font-black">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white font-black">
                       {r.name.charAt(0)}
                     </div>
                     <div>
@@ -173,7 +173,7 @@ export default function SkinScrubberThankYouPage() {
         </p>
         <Link
           href="/landing/skinscrubber-pro"
-          className="mt-3 inline-block font-bold text-rose-500 hover:underline"
+          className="mt-3 inline-block font-bold text-slate-900 hover:underline"
         >
           ← Volver al Skin Scrubber Pro
         </Link>
