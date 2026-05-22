@@ -2,7 +2,8 @@ export type ProductSlug =
   | "pelocero-casa-kit"
   | "aguaviva-flow"
   | "juegasolo-motion-kit"
-  | "neckrelax-pro";
+  | "neckrelax-pro"
+  | "skinscrubber-pro";
 
 export type Variant = {
   id: "s" | "m" | "l" | "xl";
@@ -237,6 +238,46 @@ export const products: Product[] = [
     ],
     accent: "bg-rose-700",
     image: "/products/neckrelax-hero.jpg",
+  },
+  {
+    slug: "skinscrubber-pro",
+    name: "Ultrasonic Skin Scrubber Pro",
+    shortName: "Skin Scrubber",
+    category: "Cuidado Facial",
+    cardHeading: "Limpieza facial profunda nivel spa, desde casa.",
+    cardSubheading: "Espátula ultrasónica para extraer puntos negros y limpiar poros.",
+    heroHeadline: "Poros limpios en 5 minutos desde tu casa.",
+    heroSubheadline: "Limpiador ultrasónico que extrae la suciedad más rebelde para dejar tu piel suave y luminosa.",
+    pain: [
+      "Puntos negros que vuelven aunque los aprietes.",
+      "Poros grandes que se notan aunque te maquilles.",
+      "Piel opaca, cansada, textura irregular.",
+    ],
+    mechanism: "Las ondas de ultrasonido a 24,000 Hz pulverizan el agua y penetran en los poros, expulsando la grasa, células muertas y puntos negros hacia la superficie de la espátula.",
+    science: {
+      headline: "Tecnología Ultrasónica de Cavitación",
+      description: "Mediante vibraciones de alta frecuencia, convierte el agua en microburbujas que penetran profundamente en los poros. Este efecto mecánico (no químico) expulsa la suciedad incrustada sin dañar los tejidos circundantes ni dilatar permanentemente el poro."
+    },
+    ingredients: {
+      headline: "Diseño seguro y efectivo",
+      items: [
+        "Espátula curvada de acero inoxidable (grado médico 304)",
+        "4 Modos de uso (Limpieza, Lifting, Ion+, Ion-)",
+        "Batería recargable por USB",
+        "Diseño ergonómico y ligero"
+      ]
+    },
+    authority: {
+      headline: "El secreto mejor guardado de las esteticistas",
+      description: "La extracción ultrasónica es el método preferido por profesionales en Panamá para limpiezas profundas sin dejar la piel roja o marcada, ideal para el clima húmedo que obstruye los poros."
+    },
+    includes: [
+      "Skin Scrubber Pro — espátula ultrasónica",
+      "Cable de carga USB-C",
+      "Guía rápida de uso",
+    ],
+    accent: "bg-slate-900",
+    image: "/products/skinscrubber-hero.jpg",
   },
 ];
 
