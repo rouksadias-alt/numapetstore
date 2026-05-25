@@ -7,10 +7,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 ARG GEOIPUPDATE_VERSION=7.0.1
-RUN curl -fsSL "https://github.com/maxmind/geoipupdate/releases/download/v${GEOIPUPDATE_VERSION}/geoipupdate_${GEOIPUPDATE_VERSION}_linux_amd64.tar.gz" \
+RUN curl -fsSL --max-time 30 "https://github.com/maxmind/geoipupdate/releases/download/v${GEOIPUPDATE_VERSION}/geoipupdate_${GEOIPUPDATE_VERSION}_linux_amd64.tar.gz" \
         | tar -xz -C /tmp \
     && mv "/tmp/geoipupdate_${GEOIPUPDATE_VERSION}_linux_amd64/geoipupdate" /usr/local/bin/geoipupdate \
-    && rm -rf "/tmp/geoipupdate_${GEOIPUPDATE_VERSION}_linux_amd64"
+    && rm -rf "/tmp/geoipupdate_${GEOIPUPDATE_VERSION}_linux_amd64" \
+    || echo "WARNING: geoipupdate download skipped"
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
