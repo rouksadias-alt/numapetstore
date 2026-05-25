@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     public_site_url: AnyHttpUrl = "https://numapet.store"
     public_api_url: AnyHttpUrl = "https://api.numapet.store"
     database_url: str
-    cors_origins: str = "http://localhost:3000,https://numapet.store"
+    cors_origins: str = "http://localhost:3000,https://numapet.store,https://www.numapet.store"
     google_sheets_webhook_url: str | None = None
     google_sheets_webhook_secret: str | None = None
     telegram_bot_token: str | None = None

@@ -1,4 +1,4 @@
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? "";
+const BASE = process.env.NEXT_PUBLIC_API_URL || "https://api.numapet.store";
 
 export class AdminApiError extends Error {
   status: number;
