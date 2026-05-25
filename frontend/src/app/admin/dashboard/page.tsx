@@ -50,6 +50,8 @@ export default function DashboardPage() {
     <AdminShell>
       <div className="space-y-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-8">
+          <h1 className="sr-only">Dashboard Overview</h1>
+          <div className="flex-1" />
           <DateRange
             from={from}
             to={to}

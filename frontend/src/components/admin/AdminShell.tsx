@@ -67,7 +67,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <main className="mx-auto max-w-7xl px-6 pb-12">
         {/* TABS */}
         <div className="mb-8 flex items-center">
-          <nav className="inline-flex items-center gap-1 rounded-full bg-white p-1.5 shadow-sm">
+          <nav className="inline-flex items-center gap-1 rounded-full bg-white p-1.5 shadow-sm border border-slate-100">
             {NAV.map((n) => {
               const active = pathname?.startsWith(n.href);
               return (
@@ -77,7 +77,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                   className={`rounded-full px-5 py-2 text-sm font-bold transition ${
                     active
                       ? "bg-[#144f3e] text-white"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                   }`}
                 >
                   {n.label}
