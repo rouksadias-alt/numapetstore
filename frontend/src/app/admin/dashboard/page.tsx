@@ -16,7 +16,7 @@ function formatPercent(n: number) {
 }
 function formatCurrency(n: number, ccy = "USD") {
   try {
-    return new Intl.NumberFormat("es-PA", { style: "currency", currency: ccy }).format(n);
+    return new Intl.NumberFormat("en-US", { style: "currency", currency: ccy }).format(n);
   } catch {
     return `$${n.toFixed(2)}`;
   }
@@ -49,23 +49,16 @@ export default function DashboardPage() {
   return (
     <AdminShell>
       <div className="space-y-6">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h1 className="text-2xl font-black tracking-tight">Dashboard</h1>
-            <p className="text-sm text-slate-500">
-              Métricas filtradas por IP válida (país permitido + sin VPN/proxy).
-            </p>
-          </div>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-8">
+          <DateRange
+            from={from}
+            to={to}
+            onChange={(f, t) => {
+              setFrom(f);
+              setTo(t);
+            }}
+          />
         </div>
-
-        <DateRange
-          from={from}
-          to={to}
-          onChange={(f, t) => {
-            setFrom(f);
-            setTo(t);
-          }}
-        />
 
         {error ? (
           <div className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-800">{error}</div>
@@ -74,20 +67,10 @@ export default function DashboardPage() {
         <StatCards data={data} loading={loading} />
 
         {data ? (
-          <>
+          <div className="grid gap-6 lg:grid-cols-[1fr_350px]">
             <DailyBars data={data} />
-            <div className="grid gap-4 lg:grid-cols-3">
-              <StatusBreakdown data={data} />
-              <TopList
-                title="Ciudades top"
-                rows={data.top_cities.map((c) => ({ label: c.city, value: c.visits }))}
-              />
-              <TopList
-                title="Fuentes top (UTM)"
-                rows={data.top_sources.map((s) => ({ label: s.source, value: s.visits }))}
-              />
-            </div>
-          </>
+            <ChannelRevenue data={data} />
+          </div>
         ) : null}
       </div>
     </AdminShell>
@@ -95,48 +78,77 @@ export default function DashboardPage() {
 }
 
 function StatCards({ data, loading }: { data: StatsResponse | null; loading: boolean }) {
+  const rev = data?.orders.revenue ?? 0;
+  const confirmedOrders = (data?.orders.by_status.confirmed ?? 0) + (data?.orders.by_status.shipped ?? 0) + (data?.orders.by_status.delivered ?? 0);
+  const cvr = data?.conversion_rate ?? 0;
+  const aov = confirmedOrders > 0 ? rev / confirmedOrders : 0;
+
   const cards = [
     {
-      label: "Visitas válidas",
-      value: data?.visits.valid ?? 0,
-      sub: data ? `de ${data.visits.total.toLocaleString()} totales · ${data.visits.vpn} VPN` : "",
+      label: "Revenue",
+      value: loading ? "…" : formatCurrency(rev),
+      isPrimary: true,
+      icon: "↗",
     },
     {
-      label: "Sesiones únicas",
-      value: data?.visits.sessions_valid ?? 0,
-      sub: data ? `${data.visits.sessions_total.toLocaleString()} totales` : "",
+      label: "Confirmed Orders",
+      value: loading ? "…" : confirmedOrders.toLocaleString(),
+      icon: "🛍️",
     },
     {
-      label: "Pedidos válidos",
-      value: data?.orders.valid ?? 0,
-      sub: data ? `${data.orders.total.toLocaleString()} totales` : "",
+      label: "Conversion Rate",
+      value: loading ? "…" : formatPercent(cvr),
+      icon: "📊",
     },
     {
-      label: "Conversión",
-      value: data ? formatPercent(data.conversion_rate) : "—",
-      sub: data ? `pedidos válidos / visitas válidas` : "",
+      label: "Unique Sessions",
+      value: loading ? "…" : (data?.visits.sessions_valid ?? 0).toLocaleString(),
+      icon: "👥",
     },
     {
-      label: "Ingresos",
-      value: data ? formatCurrency(data.orders.revenue) : "—",
-      sub: data ? `excl. cancelados / devueltos` : "",
+      label: "Page Views",
+      value: loading ? "…" : (data?.visits.valid ?? 0).toLocaleString(),
+      icon: "👁️",
+    },
+    {
+      label: "Total Orders",
+      value: loading ? "…" : (data?.orders.valid ?? 0).toLocaleString(),
+      icon: "📈",
+    },
+    {
+      label: "AOV",
+      value: loading ? "…" : formatCurrency(aov),
+      icon: "💰",
+    },
+    {
+      label: "VPN Traffic",
+      value: loading ? "…" : (data?.visits.vpn ?? 0).toLocaleString(),
+      icon: "🛡️",
     },
   ];
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {cards.map((c) => (
         <div
           key={c.label}
-          className="rounded-2xl bg-white p-4 ring-1 ring-slate-200"
+          className={`rounded-[1.5rem] p-6 shadow-sm transition-all ${
+            c.isPrimary
+              ? "bg-[#144f3e] text-white"
+              : "bg-white text-slate-900 border border-slate-100"
+          }`}
         >
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            {c.label}
+          <div className="flex items-start justify-between">
+            <div className={`text-xs font-bold tracking-wide ${c.isPrimary ? "text-white/80" : "text-slate-500"}`}>
+              {c.label}
+            </div>
+            <div className={`text-sm ${c.isPrimary ? "text-white/80" : "text-slate-400"}`}>
+              {c.icon}
+            </div>
           </div>
-          <div className="mt-1 text-2xl font-black tracking-tight">
-            {loading ? "…" : (typeof c.value === "number" ? c.value.toLocaleString() : c.value)}
+          <div className="mt-4 text-3xl font-black tracking-tight">
+            {c.value}
           </div>
-          <div className="mt-1 text-xs text-slate-400">{c.sub}</div>
         </div>
       ))}
     </div>
@@ -144,99 +156,55 @@ function StatCards({ data, loading }: { data: StatsResponse | null; loading: boo
 }
 
 function DailyBars({ data }: { data: StatsResponse }) {
-  const max = Math.max(1, ...data.daily.map((d) => Math.max(d.visits_valid, d.orders_valid * 10)));
+  const max = Math.max(1, ...data.daily.map((d) => d.orders_valid));
+  
   return (
-    <div className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
-      <div className="mb-3 flex items-center justify-between">
-        <h3 className="font-bold">Diario</h3>
-        <div className="flex items-center gap-3 text-xs text-slate-500">
-          <span className="flex items-center gap-1">
-            <span className="h-2 w-3 rounded-sm bg-slate-900" /> Visitas válidas
-          </span>
-          <span className="flex items-center gap-1">
-            <span className="h-2 w-3 rounded-sm bg-emerald-500" /> Pedidos válidos
-          </span>
-        </div>
-      </div>
-      <div className="grid grid-cols-7 gap-2 sm:grid-cols-14 lg:grid-cols-14">
-        <div className="col-span-full overflow-x-auto">
-          <div className="flex items-end gap-1.5" style={{ minWidth: data.daily.length * 38 }}>
-            {data.daily.map((d) => (
-              <div key={d.day} className="flex w-9 flex-col items-center gap-1">
-                <div className="flex h-32 w-full items-end gap-0.5">
-                  <div
-                    className="flex-1 rounded-t bg-slate-900"
-                    style={{ height: `${(d.visits_valid / max) * 100}%` }}
-                    title={`${d.visits_valid} visitas`}
-                  />
-                  <div
-                    className="flex-1 rounded-t bg-emerald-500"
-                    style={{ height: `${((d.orders_valid * 10) / max) * 100}%` }}
-                    title={`${d.orders_valid} pedidos`}
-                  />
-                </div>
-                <div className="text-[10px] text-slate-400">{d.day.slice(5)}</div>
-                <div className="text-[10px] font-semibold text-slate-700">
-                  {d.visits_valid}/{d.orders_valid}
-                </div>
-              </div>
-            ))}
+    <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-100">
+      <h3 className="mb-6 font-bold text-slate-900">Daily Trend</h3>
+      <div className="space-y-4">
+        {data.daily.slice().reverse().map((d) => (
+          <div key={d.day} className="flex items-center gap-4">
+            <div className="w-24 shrink-0 text-sm font-semibold text-slate-700">
+              {d.day}
+            </div>
+            <div className="flex-1 h-3 bg-slate-100 rounded-full overflow-hidden flex items-center">
+              <div
+                className="h-full bg-[#144f3e] rounded-full"
+                style={{ width: `${Math.max(2, (d.orders_valid / max) * 100)}%` }}
+              />
+            </div>
+            <div className="w-20 shrink-0 text-right text-sm font-bold text-slate-900">
+              {d.orders_valid} orders
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 }
 
-function StatusBreakdown({ data }: { data: StatsResponse }) {
-  const bs = data.orders.by_status;
-  const items = [
-    { key: "pending",   ...statusMeta("pending_confirmation") },
-    { key: "confirmed", ...statusMeta("confirmed") },
-    { key: "shipped",   ...statusMeta("shipped") },
-    { key: "delivered", ...statusMeta("delivered") },
-    { key: "cancelled", ...statusMeta("cancelled") },
-  ];
+function ChannelRevenue({ data }: { data: StatsResponse }) {
+  // Mock revenue distribution based on top sources to match the design style
+  // Since we only have visits per source right now, we'll display visits
+  
   return (
-    <div className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
-      <h3 className="mb-3 font-bold">Pedidos por estado</h3>
-      <ul className="space-y-2">
-        {items.map((it) => (
-          <li key={it.key} className="flex items-center justify-between text-sm">
-            <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${it.color}`}>
-              {it.label}
-            </span>
-            <span className="font-bold">
-              {(bs as Record<string, number>)[it.key] ?? 0}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function TopList({
-  title,
-  rows,
-}: {
-  title: string;
-  rows: Array<{ label: string; value: number }>;
-}) {
-  return (
-    <div className="rounded-2xl bg-white p-5 ring-1 ring-slate-200">
-      <h3 className="mb-3 font-bold">{title}</h3>
-      {rows.length === 0 ? (
+    <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-100">
+      <h3 className="mb-6 font-bold text-slate-900">Top Sources</h3>
+      {data.top_sources.length === 0 ? (
         <p className="text-sm text-slate-400">Sin datos</p>
       ) : (
-        <ul className="space-y-2">
-          {rows.map((r, i) => (
-            <li key={`${r.label}-${i}`} className="flex items-center justify-between text-sm">
-              <span className="truncate text-slate-700">{r.label}</span>
-              <span className="font-bold">{r.value.toLocaleString()}</span>
-            </li>
+        <div className="space-y-5">
+          {data.top_sources.map((s, i) => (
+            <div key={`${s.source}-${i}`} className="flex items-center justify-between">
+              <span className="font-bold text-slate-700 lowercase tracking-tight">
+                {s.source}
+              </span>
+              <span className="font-bold text-slate-900">
+                {s.visits.toLocaleString()} visits
+              </span>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
