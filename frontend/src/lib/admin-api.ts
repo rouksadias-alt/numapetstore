@@ -105,6 +105,7 @@ export interface OrderRow {
   tracking_number: string | null;
   admin_notes: string | null;
   created_at: string;
+  items_summary?: string | null;
 }
 
 export interface OrdersResponse {

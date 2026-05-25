@@ -265,7 +265,8 @@ async def list_orders(
                 SELECT id, order_number, status, customer_name, phone_e164, phone_raw,
                        country, currency, total, payment_method, geo_country, geo_city,
                        is_vpn, city, address, courier, tracking_number, admin_notes,
-                       created_at
+                       created_at,
+                       (SELECT string_agg(quantity || 'x ' || product_name, ', ') FROM order_items WHERE order_id = orders.id) as items_summary
                 FROM orders
                 WHERE {where_sql}
                 ORDER BY created_at DESC

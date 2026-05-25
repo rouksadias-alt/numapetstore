@@ -119,6 +119,7 @@ export default function OrdersPage() {
                 <tr>
                   <th className="px-4 py-3">Pedido</th>
                   <th className="px-4 py-3">Cliente</th>
+                  <th className="px-4 py-3">Productos</th>
                   <th className="px-4 py-3">Teléfono</th>
                   <th className="px-4 py-3">Ubicación</th>
                   <th className="px-4 py-3">Total</th>
@@ -128,9 +129,9 @@ export default function OrdersPage() {
               </thead>
               <tbody>
                 {loading && items.length === 0 ? (
-                  <tr><td colSpan={7} className="px-4 py-10 text-center text-slate-400">Cargando…</td></tr>
+                  <tr><td colSpan={8} className="px-4 py-10 text-center text-slate-400">Cargando…</td></tr>
                 ) : items.length === 0 ? (
-                  <tr><td colSpan={7} className="px-4 py-10 text-center text-slate-400">Sin pedidos</td></tr>
+                  <tr><td colSpan={8} className="px-4 py-10 text-center text-slate-400">Sin pedidos</td></tr>
                 ) : (
                   items.map((o) => {
                     const m = statusMeta(o.status);
@@ -145,6 +146,9 @@ export default function OrdersPage() {
                           {o.is_vpn ? <span className="text-rose-600">⚠ VPN</span> : null}
                         </td>
                         <td className="px-4 py-3">{o.customer_name}</td>
+                        <td className="px-4 py-3 text-xs text-slate-600 max-w-[200px] truncate" title={o.items_summary || "—"}>
+                          {o.items_summary || "—"}
+                        </td>
                         <td className="px-4 py-3 font-mono text-xs">{o.phone_e164}</td>
                         <td className="px-4 py-3 text-xs text-slate-600">
                           {o.geo_city || o.city || "—"}
@@ -180,9 +184,10 @@ export default function OrdersPage() {
                     <div>
                       <div className="font-mono text-xs font-bold">{o.order_number}</div>
                       <div className="font-semibold">{o.customer_name}</div>
+                      <div className="text-xs text-slate-500 line-clamp-1">{o.items_summary || "—"}</div>
                       <div className="text-xs text-slate-500">{o.phone_e164}</div>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right shrink-0">
                       <div className="font-bold">${o.total.toFixed(2)}</div>
                       <span className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold ${m.color}`}>
                         {m.label}
